@@ -1,0 +1,96 @@
+{
+  "header": {
+    "name": "Kyle Isom",
+    "email": "kyle@kyleisom.net",
+    "title": "Software Engineer",
+    "website": "http://www.kyleisom.net"
+  },
+  "skills": {
+    "ordering": [
+      "development",
+      "software engineering",
+      "development tools"
+    ],
+    "development": [
+      "C",
+      "Python",
+      "Clojure",
+      "Perl",
+      "Objective-C",
+      "POSIX programming"
+    ],
+    "software engineering": [
+      "GNU Autotools",
+      "LaTeX",
+      "Texinfo"
+    ],
+    "development tools": [
+      "valgrind",
+      "lint",
+      "rats",
+      "vim",
+      "emacs"
+    ],
+    "comments": [
+      "I know how to do the other engineering involved with software projects, such as documentation, build system setup, and developing useful unit tests.",
+      "I have a strong background in computer security, particularly the field of secure programming. Some of my security skills include penetration testing, reverse engineering, and proactive network defense."
+    ]
+  },
+  "work experience": {
+    "EchoStar Technologies": {
+      "title": "Software Security Engineer",
+      "details": [
+        "Conduct code reviews and audits in C and C++.",
+        "Patch Linux kernel for embedded devices to address site-specific security requirements.",
+        "Write Python code to generate encrypted softtware updates for Linux-based set top boxes."
+      ],
+      "location": "Englwood, CO, USA",
+      "start": 1278738000,
+      "end": 0
+    }
+  },
+  "selected projects": {
+    "Crypto Intro": {
+      "description": "An introduction to cryptography, illustrated with PyCrypto.",
+      "details": [
+        "Introduces cryptography to developers who may not have a solid understanding of not only what cryptography is, but also when to use it.",
+        "Uses Python to clearly introduce how to properly integrate cryptography into projects.",
+        "Includes source code examples with tests."
+      ],
+      "published": 1308344400,
+      "language": "python",
+      "url": "https://github.com/kisom/crypto_intro"
+    },
+    "libdaemon": {
+      "description": "A lightweight POSIX daemon library.",
+      "details": [
+        "Written to satisfy the need for a common API to daemonise programs written in C.",
+        "Satisfies requirement that programs using the library compile and run under OpenBSD, OS X, and Linux."
+      ],
+      "published": 1316811600,
+      "language": "C",
+      "url": "http://www.tyrfingr.is/projects/libdaemon/"
+    },
+    "woofs": {
+      "language": "python",
+      "url": "https://github.com/kisom/woofs",
+      "published": 1311541200,
+      "description": "Share files easily from the commandline.",
+      "details": [
+        "Designed to quickly share a file over HTTPS.",
+        "Addresses the fact that similar programs weren't written using TLS/SSL."
+      ]
+    },
+    "srvwd": {
+      "language": "C",
+      "url": "http://www.tyrfingr.is/projects/srvwd",
+      "published": 1334692800,
+      "description": "Serve the current working directory over HTTP.",
+      "details": [
+        "Minimal webserver written in ANSI C.",
+        "Forking webserver that can be chrooted for security.",
+        "Designed to specifically facilitate rapid testing of statically-generated sites."
+      ]
+    }
+  }
+}

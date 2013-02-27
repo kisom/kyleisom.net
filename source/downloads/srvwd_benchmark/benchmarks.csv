@@ -1,0 +1,8 @@
+"Server","Req/sec","MB/sec"
+"c srvwd",8202.16,28.33
+"go srvwd",8312.69",29.35
+"go 4 proc srvwd",18531.55,65.43
+"nginx",31778.16,113.10
+"flask",3135.19,11.02
+"twisted",4040.82,14.05
+"sinatra",2879.08,10.21

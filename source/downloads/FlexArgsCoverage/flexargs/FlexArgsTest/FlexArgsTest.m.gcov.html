@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - FlexArgs code coverage - flexargs/FlexArgsTest/FlexArgsTest.m</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">flexargs/FlexArgsTest</a> - FlexArgsTest.m<span style="font-size: 80%;"> (source / <a href="FlexArgsTest.m.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">FlexArgs code coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2012-03-15</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : //</a>
+<span class="lineNum">       2 </span>                :            : //  FlexArgsTest.m
+<span class="lineNum">       3 </span>                :            : //  FlexArgsTest
+<span class="lineNum">       4 </span>                :            : //
+<span class="lineNum">       5 </span>                :            : //  Created by Kyle Isom on 15/03/2012.
+<span class="lineNum">       6 </span>                :            : //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+<span class="lineNum">       7 </span>                :            : //
+<span class="lineNum">       8 </span>                :            : 
+<span class="lineNum">       9 </span>                :            : #import &quot;FlexArgsTest.h&quot;
+<span class="lineNum">      10 </span>                :            : 
+<span class="lineNum">      11 </span>                :            : @implementation FlexArgsTest
+<span class="lineNum">      12 </span>                :            : 
+<span class="lineNum">      13 </span>                :<span class="lineCov">          2 : - (void)setUp</span>
+<span class="lineNum">      14 </span>                :            : {
+<span class="lineNum">      15 </span>                :<span class="lineCov">          2 :     [super setUp];</span>
+<span class="lineNum">      16 </span>                :            :     
+<span class="lineNum">      17 </span>                :            :     // Set-up code here.
+<span class="lineNum">      18 </span>                :<span class="lineCov">          2 : }</span>
+<span class="lineNum">      19 </span>                :            : 
+<span class="lineNum">      20 </span>                :<span class="lineCov">          2 : - (void)tearDown</span>
+<span class="lineNum">      21 </span>                :            : {
+<span class="lineNum">      22 </span>                :            :     // Tear-down code here.
+<span class="lineNum">      23 </span>                :            :     
+<span class="lineNum">      24 </span>                :<span class="lineCov">          2 :     [super tearDown];</span>
+<span class="lineNum">      25 </span>                :<span class="lineCov">          2 : }</span>
+<span class="lineNum">      26 </span>                :            : 
+<span class="lineNum">      27 </span>                :<span class="lineCov">          1 : - (void)test_init_with_NSArray</span>
+<span class="lineNum">      28 </span>                :            : {
+<span class="lineNum">      29 </span>                :<span class="lineCov">          1 :     NSArray *testArgs = [NSArray arrayWithObjects:</span>
+<span class="lineNum">      30 </span>                :            :                          @&quot;foo=bar&quot;,
+<span class="lineNum">      31 </span>                :            :                          @&quot;baz=1&quot;,
+<span class="lineNum">      32 </span>                :            :                          @&quot;quux=-2.5&quot;,
+<span class="lineNum">      33 </span>                :            :                          @&quot;spam=footastic&quot;,
+<span class="lineNum">      34 </span>                :<span class="lineCov">          1 :                          @&quot;eggs=false&quot;, nil];</span>
+<span class="lineNum">      35 </span>                :<span class="lineCov">          1 :     NSDictionary *expected = [NSDictionary dictionaryWithObjectsAndKeys:</span>
+<span class="lineNum">      36 </span>                :            :                               @&quot;bar&quot;, @&quot;foo&quot;,
+<span class="lineNum">      37 </span>                :            :                               [NSNumber numberWithLongLong:1], @&quot;baz&quot;,
+<span class="lineNum">      38 </span>                :            :                               [NSNumber numberWithDouble:-2.5], @&quot;quux&quot;,
+<span class="lineNum">      39 </span>                :            :                               @&quot;footastic&quot;, @&quot;spam&quot;,
+<span class="lineNum">      40 </span>                :<span class="lineCov">          1 :                               [NSNumber numberWithBool:false], @&quot;eggs&quot;, nil];</span>
+<span class="lineNum">      41 </span>                :<span class="lineCov">          1 :     FlexArgs *flexArgs = [[FlexArgs alloc] initParserWithNSArray:testArgs];</span>
+<span class="lineNum">      42 </span>                :<span class="lineCov">          1 :     NSDictionary *parsed = [flexArgs retrieveArgs];</span>
+<span class="lineNum">      43 </span>                :            :     
+<span class="lineNum">      44 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          1 :     STAssertTrue([parsed isEqualToDictionary:expected], </span>
+<span class="lineNum">      45 </span>                :            :                  @&quot;initParserWithNSArray failed to return the expected NSDictionary!&quot;);
+<span class="lineNum">      46 </span>                :<span class="lineCov">          1 : }</span>
+<span class="lineNum">      47 </span>                :            : 
+<span class="lineNum">      48 </span>                :<span class="lineCov">          1 : -(void)test_instance_matches_class</span>
+<span class="lineNum">      49 </span>                :            : {
+<span class="lineNum">      50 </span>                :<span class="lineCov">          1 :     NSArray *testArgs = [NSArray arrayWithObjects:</span>
+<span class="lineNum">      51 </span>                :            :                          @&quot;foo=bar&quot;,
+<span class="lineNum">      52 </span>                :            :                          @&quot;baz=1&quot;,
+<span class="lineNum">      53 </span>                :            :                          @&quot;quux=-2.5&quot;,
+<span class="lineNum">      54 </span>                :            :                          @&quot;spam=footastic&quot;,
+<span class="lineNum">      55 </span>                :<span class="lineCov">          1 :                          @&quot;eggs=false&quot;, nil];    </span>
+<span class="lineNum">      56 </span>                :<span class="lineCov">          1 :     FlexArgs *flexInstance = [[FlexArgs alloc] initParserWithNSArray:testArgs];</span>
+<span class="lineNum">      57 </span>                :<span class="lineCov">          1 :     NSDictionary *instanceDictionary = [flexInstance retrieveArgs];</span>
+<span class="lineNum">      58 </span>                :            :     
+<span class="lineNum">      59 </span>                :<span class="lineCov">          1 :     NSDictionary *classDictionary = [[FlexArgs parserWithNSArray:testArgs] retrieveArgs];</span>
+<span class="lineNum">      60 </span>                :            :     
+<span class="lineNum">      61 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          1 :     STAssertTrue([classDictionary isEqualToDictionary:instanceDictionary],</span>
+<span class="lineNum">      62 </span>                :            :                  @&quot;Class NSDictionary failed to match instance NSDictionary!&quot;);
+<span class="lineNum">      63 </span>                :<span class="lineCov">          1 : }</span>
+<span class="lineNum">      64 </span>                :            : 
+<span class="lineNum">      65 </span>                :            : @end
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+# using_set_theory
+Example code to illustrate using set theory.
+
+## Usage
+
+lein deps, test, run
+
+## License
+
+[ISC / public domain dual-license](http://brokenlcd.net/license.txt)

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: my docs got dropped
+title: my docs were dropped
 date: 2011-12-31 00:00
 comments: true
 categories: personal

@@ -1,0 +1,1886 @@
+%PDF-1.1
+1 0 obj
+<<
+>>
+endobj
+3 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F0
+/BaseFont /Times-Roman
+>>
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Times-Bold
+>>
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Times-Italic
+>>
+6 0 obj
+<<
+/Length 7 0 R
+>>
+stream
+BT
+/F1 11 Tf
+68.013 702.834 Td
+(NAME) Tj
+ET
+BT
+/F1 11 Tf
+81.763 687.445 Td
+(Kyle) Tj
+ET
+BT
+/F1 11 Tf
+106.513 687.445 Td
+(Isom) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+132.484 687.445 Td
+(-) Tj
+ET
+BT
+/F0 11 Tf
+138.897 687.445 Td
+(software) Tj
+ET
+BT
+/F0 11 Tf
+179.520 687.445 Td
+(security) Tj
+ET
+BT
+/F0 11 Tf
+217.096 687.445 Td
+(engineer) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.013 656.667 Td
+(SYNOPSIS) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+81.763 641.278 Td
+(Personal) Tj
+ET
+BT
+/F2 11 Tf
+124.234 641.278 Td
+(Site:) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+147.147 641.278 Td
+(http://www.kyleisom.net) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.763 625.889 Td
+(Email:) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+113.850 625.889 Td
+(kyle@kyleisom.net) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.013 595.111 Td
+(SKILLS) Tj
+ET
+BT
+/F1 11 Tf
+81.763 579.722 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+102.234 579.722 Td
+(Development:) Tj
+ET
+BT
+/F0 11 Tf
+167.310 579.722 Td
+(C,) Tj
+ET
+BT
+/F0 11 Tf
+180.147 579.722 Td
+(Python,) Tj
+ET
+BT
+/F0 11 Tf
+216.821 579.722 Td
+(Clojure,) Tj
+ET
+BT
+/F0 11 Tf
+255.321 579.722 Td
+(Objective-C,) Tj
+ET
+BT
+/F0 11 Tf
+314.589 579.722 Td
+(UNIX) Tj
+ET
+BT
+/F0 11 Tf
+344.828 579.722 Td
+(/) Tj
+ET
+BT
+/F0 11 Tf
+350.636 579.722 Td
+(POSIX) Tj
+ET
+BT
+/F0 11 Tf
+385.165 579.722 Td
+(programming,) Tj
+ET
+BT
+/F0 11 Tf
+450.549 579.722 Td
+(network) Tj
+ET
+BT
+/F0 11 Tf
+102.234 564.333 Td
+(programming,) Tj
+ET
+BT
+/F0 11 Tf
+167.618 564.333 Td
+(security) Tj
+ET
+BT
+/F0 11 Tf
+205.194 564.333 Td
+(engineering) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.763 548.944 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+102.234 548.944 Td
+(Software) Tj
+ET
+BT
+/F0 11 Tf
+144.694 548.944 Td
+(Engineering:) Tj
+ET
+BT
+/F0 11 Tf
+204.270 548.944 Td
+(GNU) Tj
+ET
+BT
+/F0 11 Tf
+230.846 548.944 Td
+(Autotools) Tj
+ET
+BT
+/F0 11 Tf
+276.991 548.944 Td
+(suite,) Tj
+ET
+BT
+/F0 11 Tf
+303.270 548.944 Td
+(LaTeX,) Tj
+ET
+BT
+/F0 11 Tf
+339.922 548.944 Td
+(Texinfo,) Tj
+ET
+BT
+/F0 11 Tf
+380.248 548.944 Td
+(mandoc) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.763 533.555 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+102.234 533.555 Td
+(Development) Tj
+ET
+BT
+/F0 11 Tf
+164.252 533.555 Td
+(Tools:) Tj
+ET
+BT
+/F0 11 Tf
+195.118 533.555 Td
+(Valgrind,) Tj
+ET
+BT
+/F0 11 Tf
+239.723 533.555 Td
+(lint,) Tj
+ET
+BT
+/F0 11 Tf
+259.897 533.555 Td
+(rats,) Tj
+ET
+BT
+/F0 11 Tf
+281.281 533.555 Td
+(vim,) Tj
+ET
+BT
+/F0 11 Tf
+303.897 533.555 Td
+(emacs) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.763 518.166 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+102.234 518.166 Td
+(Development) Tj
+ET
+BT
+/F0 11 Tf
+164.252 518.166 Td
+(Cycle:) Tj
+ET
+BT
+/F0 11 Tf
+195.723 518.166 Td
+(I) Tj
+ET
+BT
+/F0 11 Tf
+202.136 518.166 Td
+(know) Tj
+ET
+BT
+/F0 11 Tf
+229.328 518.166 Td
+(how) Tj
+ET
+BT
+/F0 11 Tf
+251.020 518.166 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+262.328 518.166 Td
+(do) Tj
+ET
+BT
+/F0 11 Tf
+276.078 518.166 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+292.270 518.166 Td
+(other) Tj
+ET
+BT
+/F0 11 Tf
+317.625 518.166 Td
+(engineering) Tj
+ET
+BT
+/F0 11 Tf
+372.306 518.166 Td
+(involved) Tj
+ET
+BT
+/F0 11 Tf
+413.556 518.166 Td
+(with) Tj
+ET
+BT
+/F0 11 Tf
+435.864 518.166 Td
+(software) Tj
+ET
+BT
+/F0 11 Tf
+476.487 518.166 Td
+(projects,) Tj
+ET
+BT
+/F0 11 Tf
+516.813 518.166 Td
+(such) Tj
+ET
+BT
+/F0 11 Tf
+102.234 502.777 Td
+(as) Tj
+ET
+BT
+/F0 11 Tf
+114.147 502.777 Td
+(documentation,) Tj
+ET
+BT
+/F0 11 Tf
+185.031 502.777 Td
+(build) Tj
+ET
+BT
+/F0 11 Tf
+210.397 502.777 Td
+(system) Tj
+ET
+BT
+/F0 11 Tf
+243.705 502.777 Td
+(setup,) Tj
+ET
+BT
+/F0 11 Tf
+272.426 502.777 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+291.060 502.777 Td
+(developing) Tj
+ET
+BT
+/F0 11 Tf
+342.694 502.777 Td
+(useful) Tj
+ET
+BT
+/F0 11 Tf
+372.328 502.777 Td
+(unit) Tj
+ET
+BT
+/F0 11 Tf
+392.194 502.777 Td
+(tests.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.763 487.388 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+102.234 487.388 Td
+(Security:) Tj
+ET
+BT
+/F0 11 Tf
+144.705 487.388 Td
+(I) Tj
+ET
+BT
+/F0 11 Tf
+151.118 487.388 Td
+(have) Tj
+ET
+BT
+/F0 11 Tf
+174.636 487.388 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+182.270 487.388 Td
+(strong) Tj
+ET
+BT
+/F0 11 Tf
+212.520 487.388 Td
+(background) Tj
+ET
+BT
+/F0 11 Tf
+267.201 487.388 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+278.509 487.388 Td
+(computer) Tj
+ET
+BT
+/F0 11 Tf
+322.806 487.388 Td
+(security,) Tj
+ET
+BT
+/F0 11 Tf
+363.132 487.388 Td
+(particularly) Tj
+ET
+BT
+/F0 11 Tf
+416.592 487.388 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+432.784 487.388 Td
+(field) Tj
+ET
+BT
+/F0 11 Tf
+455.697 487.388 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+467.610 487.388 Td
+(secure) Tj
+ET
+BT
+/F0 11 Tf
+102.234 471.999 Td
+(programming.) Tj
+ET
+BT
+/F0 11 Tf
+167.618 471.999 Td
+(Some) Tj
+ET
+BT
+/F0 11 Tf
+195.426 471.999 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+207.339 471.999 Td
+(my) Tj
+ET
+BT
+/F0 11 Tf
+224.147 471.999 Td
+(security) Tj
+ET
+BT
+/F0 11 Tf
+261.723 471.999 Td
+(skills) Tj
+ET
+BT
+/F0 11 Tf
+287.705 471.999 Td
+(include) Tj
+ET
+BT
+/F0 11 Tf
+322.839 471.999 Td
+(penetration) Tj
+ET
+BT
+/F0 11 Tf
+375.078 471.999 Td
+(testing,) Tj
+ET
+BT
+/F0 11 Tf
+409.915 471.999 Td
+(reverse) Tj
+ET
+BT
+/F0 11 Tf
+444.422 471.999 Td
+(engineering,) Tj
+ET
+BT
+/F0 11 Tf
+501.853 471.999 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+102.234 456.610 Td
+(proactive) Tj
+ET
+BT
+/F0 11 Tf
+145.915 456.610 Td
+(network) Tj
+ET
+BT
+/F0 11 Tf
+184.712 456.610 Td
+(defense.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.013 425.832 Td
+(WORK) Tj
+ET
+BT
+/F1 11 Tf
+106.821 425.832 Td
+(EXPERIENCE) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.763 410.443 Td
+(Echostar) Tj
+ET
+BT
+/F0 11 Tf
+123.002 410.443 Td
+(Technologies,) Tj
+ET
+BT
+/F0 11 Tf
+187.770 410.443 Td
+(L.L.C.) Tj
+ET
+BT
+/F0 11 Tf
+219.549 410.443 Td
+(\(Englewood,) Tj
+ET
+BT
+/F0 11 Tf
+278.817 410.443 Td
+(CO) Tj
+ET
+BT
+/F0 11 Tf
+296.846 410.443 Td
+(/) Tj
+ET
+BT
+/F0 11 Tf
+302.654 410.443 Td
+(Software) Tj
+ET
+BT
+/F0 11 Tf
+345.114 410.443 Td
+(Security) Tj
+ET
+BT
+/F0 11 Tf
+384.527 410.443 Td
+(Engineer\)) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 395.054 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 395.054 Td
+(July) Tj
+ET
+BT
+/F0 11 Tf
+143.792 395.054 Td
+(2010) Tj
+ET
+BT
+/F0 11 Tf
+168.542 395.054 Td
+(-) Tj
+ET
+BT
+/F0 11 Tf
+174.955 395.054 Td
+(Present) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 379.665 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 379.665 Td
+(Conduct) Tj
+ET
+BT
+/F0 11 Tf
+162.734 379.665 Td
+(code) Tj
+ET
+BT
+/F0 11 Tf
+186.252 379.665 Td
+(reviews) Tj
+ET
+BT
+/F0 11 Tf
+223.212 379.665 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+241.846 379.665 Td
+(audits) Tj
+ET
+BT
+/F0 11 Tf
+270.875 379.665 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+282.183 379.665 Td
+(C) Tj
+ET
+BT
+/F0 11 Tf
+292.270 379.665 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+310.904 379.665 Td
+(C++.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 364.276 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 364.276 Td
+(Patch) Tj
+ET
+BT
+/F0 11 Tf
+149.897 364.276 Td
+(Linux) Tj
+ET
+BT
+/F0 11 Tf
+178.926 364.276 Td
+(kernel) Tj
+ET
+BT
+/F0 11 Tf
+209.165 364.276 Td
+(for) Tj
+ET
+BT
+/F0 11 Tf
+224.741 364.276 Td
+(embedded) Tj
+ET
+BT
+/F0 11 Tf
+272.701 364.276 Td
+(devices) Tj
+ET
+BT
+/F0 11 Tf
+308.440 364.276 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+319.748 364.276 Td
+(address) Tj
+ET
+BT
+/F0 11 Tf
+355.487 364.276 Td
+(site-specific) Tj
+ET
+BT
+/F0 11 Tf
+411.389 364.276 Td
+(security) Tj
+ET
+BT
+/F0 11 Tf
+448.965 364.276 Td
+(requirements.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 348.887 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 348.887 Td
+(Write) Tj
+ET
+BT
+/F0 11 Tf
+150.502 348.887 Td
+(Python) Tj
+ET
+BT
+/F0 11 Tf
+184.426 348.887 Td
+(code) Tj
+ET
+BT
+/F0 11 Tf
+207.944 348.887 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+219.252 348.887 Td
+(generate) Tj
+ET
+BT
+/F0 11 Tf
+259.259 348.887 Td
+(encrypted) Tj
+ET
+BT
+/F0 11 Tf
+305.382 348.887 Td
+(software) Tj
+ET
+BT
+/F0 11 Tf
+346.005 348.887 Td
+(updates) Tj
+ET
+BT
+/F0 11 Tf
+382.360 348.887 Td
+(for) Tj
+ET
+BT
+/F0 11 Tf
+397.936 348.887 Td
+(Linux-based) Tj
+ET
+BT
+/F0 11 Tf
+455.675 348.887 Td
+(set) Tj
+ET
+BT
+/F0 11 Tf
+470.646 348.887 Td
+(top) Tj
+ET
+BT
+/F0 11 Tf
+487.454 348.887 Td
+(boxes.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.013 318.109 Td
+(SELECTED) Tj
+ET
+BT
+/F1 11 Tf
+129.448 318.109 Td
+(PROJECTS) Tj
+ET
+BT
+/F1 11 Tf
+189.651 318.109 Td
+(AND) Tj
+ET
+BT
+/F1 11 Tf
+216.227 318.109 Td
+(PUBLICATIONS) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.763 302.720 Td
+(Crypto) Tj
+ET
+BT
+/F0 11 Tf
+115.071 302.720 Td
+(Intro) Tj
+ET
+BT
+/F0 11 Tf
+139.205 302.720 Td
+(\(Python\)) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 287.331 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 287.331 Td
+(An) Tj
+ET
+BT
+/F0 11 Tf
+138.897 287.331 Td
+(introduction) Tj
+ET
+BT
+/F0 11 Tf
+195.426 287.331 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+206.734 287.331 Td
+(Cryptography) Tj
+ET
+BT
+/F0 11 Tf
+270.589 287.331 Td
+(with) Tj
+ET
+BT
+/F0 11 Tf
+292.897 287.331 Td
+(PyCrypto) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 271.942 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 271.942 Td
+(Published) Tj
+ET
+BT
+/F0 11 Tf
+168.850 271.942 Td
+(June) Tj
+ET
+BT
+/F0 11 Tf
+191.763 271.942 Td
+(2011) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 256.553 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 256.553 Td
+(Introduces) Tj
+ET
+BT
+/F0 11 Tf
+171.886 256.553 Td
+(cryptography) Tj
+ET
+BT
+/F0 11 Tf
+233.288 256.553 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+244.596 256.553 Td
+(developers) Tj
+ET
+BT
+/F0 11 Tf
+294.998 256.553 Td
+(who) Tj
+ET
+BT
+/F0 11 Tf
+316.690 256.553 Td
+(may) Tj
+ET
+BT
+/F0 11 Tf
+338.382 256.553 Td
+(not) Tj
+ET
+BT
+/F0 11 Tf
+355.190 256.553 Td
+(have) Tj
+ET
+BT
+/F0 11 Tf
+378.708 256.553 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+386.342 256.553 Td
+(solid) Tj
+ET
+BT
+/F0 11 Tf
+410.487 256.553 Td
+(understanding) Tj
+ET
+BT
+/F0 11 Tf
+475.563 256.553 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+487.476 256.553 Td
+(not) Tj
+ET
+BT
+/F0 11 Tf
+504.284 256.553 Td
+(only) Tj
+ET
+BT
+/F0 11 Tf
+122.705 241.164 Td
+(what) Tj
+ET
+BT
+/F0 11 Tf
+146.839 241.164 Td
+(cryptography) Tj
+ET
+BT
+/F0 11 Tf
+208.241 241.164 Td
+(is,) Tj
+ET
+BT
+/F0 11 Tf
+221.078 241.164 Td
+(but) Tj
+ET
+BT
+/F0 11 Tf
+237.886 241.164 Td
+(also) Tj
+ET
+BT
+/F0 11 Tf
+258.357 241.164 Td
+(when) Tj
+ET
+BT
+/F0 11 Tf
+284.933 241.164 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+296.241 241.164 Td
+(use) Tj
+ET
+BT
+/F0 11 Tf
+313.654 241.164 Td
+(it.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 225.775 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 225.775 Td
+(Uses) Tj
+ET
+BT
+/F0 11 Tf
+146.839 225.775 Td
+(Python) Tj
+ET
+BT
+/F0 11 Tf
+180.763 225.775 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+192.071 225.775 Td
+(clearly) Tj
+ET
+BT
+/F0 11 Tf
+224.752 225.775 Td
+(introduce) Tj
+ET
+BT
+/F0 11 Tf
+269.049 225.775 Td
+(how) Tj
+ET
+BT
+/F0 11 Tf
+290.741 225.775 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+302.049 225.775 Td
+(properly) Tj
+ET
+BT
+/F0 11 Tf
+342.067 225.775 Td
+(integrate) Tj
+ET
+BT
+/F0 11 Tf
+383.306 225.775 Td
+(cryptography) Tj
+ET
+BT
+/F0 11 Tf
+444.708 225.775 Td
+(into) Tj
+ET
+BT
+/F0 11 Tf
+464.574 225.775 Td
+(projects.) Tj
+ET
+BT
+/F0 11 Tf
+81.763 194.997 Td
+(Woofs) Tj
+ET
+BT
+/F0 11 Tf
+113.839 194.997 Td
+(\(Python\)) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 179.608 Td
+(-) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+122.705 179.608 Td
+(Woofs) Tj
+ET
+BT
+/F2 11 Tf
+152.955 179.608 Td
+(GitHub) Tj
+ET
+BT
+/F2 11 Tf
+188.705 179.608 Td
+(page.:) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+219.252 179.608 Td
+(http://www.github.com/kisom/woofs/) Tj
+ET
+BT
+/F1 11 Tf
+102.234 164.219 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 164.219 Td
+(Share) Tj
+ET
+BT
+/F0 11 Tf
+150.502 164.219 Td
+(files) Tj
+ET
+BT
+/F0 11 Tf
+172.194 164.219 Td
+(easily) Tj
+ET
+BT
+/F0 11 Tf
+200.607 164.219 Td
+(from) Tj
+ET
+BT
+/F0 11 Tf
+224.741 164.219 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+240.933 164.219 Td
+(commandline.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 148.830 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 148.830 Td
+(Published) Tj
+ET
+BT
+/F0 11 Tf
+168.850 148.830 Td
+(July) Tj
+ET
+BT
+/F0 11 Tf
+189.937 148.830 Td
+(2011) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 133.441 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 133.441 Td
+(Designed) Tj
+ET
+BT
+/F0 11 Tf
+167.002 133.441 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+178.310 133.441 Td
+(quickly) Tj
+ET
+BT
+/F0 11 Tf
+214.060 133.441 Td
+(share) Tj
+ET
+BT
+/F0 11 Tf
+240.020 133.441 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+247.654 133.441 Td
+(file) Tj
+ET
+BT
+/F0 11 Tf
+265.067 133.441 Td
+(over) Tj
+ET
+BT
+/F0 11 Tf
+287.364 133.441 Td
+(HTTPS.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 118.052 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 118.052 Td
+(Addresses) Tj
+ET
+BT
+/F0 11 Tf
+170.665 118.052 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+186.857 118.052 Td
+(fact) Tj
+ET
+BT
+/F0 11 Tf
+206.096 118.052 Td
+(that) Tj
+ET
+BT
+/F0 11 Tf
+225.346 118.052 Td
+(similar) Tj
+ET
+BT
+/F0 11 Tf
+258.654 118.052 Td
+(programs) Tj
+ET
+BT
+/F0 11 Tf
+302.951 118.052 Td
+(were) Tj
+ET
+BT
+/F0 11 Tf
+327.074 118.052 Td
+(not) Tj
+ET
+BT
+/F0 11 Tf
+343.882 118.052 Td
+(using) Tj
+ET
+BT
+/F0 11 Tf
+370.469 118.052 Td
+(TLS/SSL.) Tj
+ET
+BT
+/F0 11 Tf
+81.763 102.663 Td
+(srvwd) Tj
+ET
+BT
+/F0 11 Tf
+111.397 102.663 Td
+(\(C\)) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+68.013 739.068 Td
+(KYLE) Tj
+ET
+BT
+/F0 11 Tf
+100.089 739.068 Td
+(ISOM\(7\)) Tj
+ET
+BT
+/F0 11 Tf
+214.874 739.068 Td
+(Programmer's) Tj
+ET
+BT
+/F0 11 Tf
+280.555 739.068 Td
+(Supplementary) Tj
+ET
+BT
+/F0 11 Tf
+349.910 739.068 Td
+(Documents) Tj
+ET
+BT
+/F0 11 Tf
+471.724 739.068 Td
+(KYLE) Tj
+ET
+BT
+/F0 11 Tf
+503.800 739.068 Td
+(ISOM\(7\)) Tj
+ET
+BT
+/F0 11 Tf
+68.013 36.234 Td
+(Resume) Tj
+ET
+BT
+/F0 11 Tf
+276.738 36.234 Td
+(May) Tj
+ET
+BT
+/F0 11 Tf
+299.651 36.234 Td
+(29,) Tj
+ET
+BT
+/F0 11 Tf
+316.151 36.234 Td
+(2012) Tj
+ET
+BT
+/F0 11 Tf
+508.684 36.234 Td
+(Resume) Tj
+ET
+ET
+endstream
+endobj
+7 0 obj
+12654
+endobj
+8 0 obj
+<<
+/ProcSet [/PDF /Text]
+/Font <<
+/F0 3 0 R
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+9 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources 8 0 R
+/Contents 6 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 11 0 R
+>>
+stream
+BT
+/F1 11 Tf
+102.234 702.834 Td
+(-) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+122.705 702.834 Td
+(srvwd) Tj
+ET
+BT
+/F2 11 Tf
+151.734 702.834 Td
+(homepage.:) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+206.107 702.834 Td
+(http://www.tyrfingr.is/projects/srvwd/) Tj
+ET
+BT
+/F1 11 Tf
+102.234 687.445 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 687.445 Td
+(Serve) Tj
+ET
+BT
+/F0 11 Tf
+150.502 687.445 Td
+(Working) Tj
+ET
+BT
+/F0 11 Tf
+192.357 687.445 Td
+(Directory) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 672.056 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 672.056 Td
+(Minimal) Tj
+ET
+BT
+/F0 11 Tf
+163.350 672.056 Td
+(web) Tj
+ET
+BT
+/F0 11 Tf
+184.426 672.056 Td
+(server) Tj
+ET
+BT
+/F0 11 Tf
+214.049 672.056 Td
+(written) Tj
+ET
+BT
+/F0 11 Tf
+247.962 672.056 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+259.270 672.056 Td
+(ANSI) Tj
+ET
+BT
+/F0 11 Tf
+287.683 672.056 Td
+(C.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 656.667 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 656.667 Td
+(Serves) Tj
+ET
+BT
+/F0 11 Tf
+154.781 656.667 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+170.973 656.667 Td
+(current) Tj
+ET
+BT
+/F0 11 Tf
+204.875 656.667 Td
+(working) Tj
+ET
+BT
+/F0 11 Tf
+244.288 656.667 Td
+(directory) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 641.278 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 641.278 Td
+(Forking) Tj
+ET
+BT
+/F0 11 Tf
+160.292 641.278 Td
+(webserver) Tj
+ET
+BT
+/F0 11 Tf
+208.241 641.278 Td
+(that) Tj
+ET
+BT
+/F0 11 Tf
+227.491 641.278 Td
+(can) Tj
+ET
+BT
+/F0 11 Tf
+245.509 641.278 Td
+(be) Tj
+ET
+BT
+/F0 11 Tf
+258.643 641.278 Td
+(chrooted) Tj
+ET
+BT
+/F0 11 Tf
+299.882 641.278 Td
+(for) Tj
+ET
+BT
+/F0 11 Tf
+315.458 641.278 Td
+(security.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 625.889 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 625.889 Td
+(Designed) Tj
+ET
+BT
+/F0 11 Tf
+167.002 625.889 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+178.310 625.889 Td
+(specifically) Tj
+ET
+BT
+/F0 11 Tf
+231.770 625.889 Td
+(facilitate) Tj
+ET
+BT
+/F0 11 Tf
+273.009 625.889 Td
+(rapid) Tj
+ET
+BT
+/F0 11 Tf
+298.364 625.889 Td
+(testing) Tj
+ET
+BT
+/F0 11 Tf
+330.451 625.889 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+342.364 625.889 Td
+(statically-generated) Tj
+ET
+BT
+/F0 11 Tf
+431.255 625.889 Td
+(sites.) Tj
+ET
+BT
+/F0 11 Tf
+81.763 610.500 Td
+(FlexArgs) Tj
+ET
+BT
+/F0 11 Tf
+125.455 610.500 Td
+(\(Objective-C\)) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+102.234 595.111 Td
+(-) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+122.705 595.111 Td
+(Github) Tj
+ET
+BT
+/F2 11 Tf
+156.013 595.111 Td
+(page.:) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+186.560 595.111 Td
+(https://github.com/kisom/flexargs) Tj
+ET
+BT
+/F1 11 Tf
+102.234 579.722 Td
+(-) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+122.705 579.722 Td
+(Flexible) Tj
+ET
+BT
+/F0 11 Tf
+161.513 579.722 Td
+(parse) Tj
+ET
+BT
+/F0 11 Tf
+187.473 579.722 Td
+(command) Tj
+ET
+BT
+/F0 11 Tf
+233.607 579.722 Td
+(line) Tj
+ET
+BT
+/F0 11 Tf
+252.857 579.722 Td
+(options.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.013 548.944 Td
+(SEE) Tj
+ET
+BT
+/F1 11 Tf
+91.553 548.944 Td
+(ALSO) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+81.763 533.555 Td
+(Github) Tj
+ET
+BT
+/F2 11 Tf
+115.071 533.555 Td
+(profile.:) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+153.571 533.555 Td
+(https://github.com/kisom/) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+81.763 518.166 Td
+(Bitbucket) Tj
+ET
+BT
+/F2 11 Tf
+126.060 518.166 Td
+(profile.:) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+164.560 518.166 Td
+(https://bitbucket.org/kisom/) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+81.763 502.777 Td
+(Unix) Tj
+ET
+BT
+/F2 11 Tf
+105.897 502.777 Td
+(and) Tj
+ET
+BT
+/F2 11 Tf
+125.147 502.777 Td
+(C) Tj
+ET
+BT
+/F2 11 Tf
+135.234 502.777 Td
+(coding) Tj
+ET
+BT
+/F2 11 Tf
+167.926 502.777 Td
+(portfolio.:) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+215.600 502.777 Td
+(https://www.tyrfingr.is) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+68.013 739.068 Td
+(KYLE) Tj
+ET
+BT
+/F0 11 Tf
+100.089 739.068 Td
+(ISOM\(7\)) Tj
+ET
+BT
+/F0 11 Tf
+214.874 739.068 Td
+(Programmer's) Tj
+ET
+BT
+/F0 11 Tf
+280.555 739.068 Td
+(Supplementary) Tj
+ET
+BT
+/F0 11 Tf
+349.910 739.068 Td
+(Documents) Tj
+ET
+BT
+/F0 11 Tf
+471.724 739.068 Td
+(KYLE) Tj
+ET
+BT
+/F0 11 Tf
+503.800 739.068 Td
+(ISOM\(7\)) Tj
+ET
+BT
+/F0 11 Tf
+68.013 36.234 Td
+(Resume) Tj
+ET
+BT
+/F0 11 Tf
+276.738 36.234 Td
+(May) Tj
+ET
+BT
+/F0 11 Tf
+299.651 36.234 Td
+(29,) Tj
+ET
+BT
+/F0 11 Tf
+316.151 36.234 Td
+(2012) Tj
+ET
+BT
+/F0 11 Tf
+508.684 36.234 Td
+(Resume) Tj
+ET
+ET
+endstream
+endobj
+11 0 obj
+4044
+endobj
+12 0 obj
+<<
+/ProcSet [/PDF /Text]
+/Font <<
+/F0 3 0 R
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+13 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources 12 0 R
+/Contents 10 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/MediaBox [0 0 612 790]
+/Count 2
+/Kids [ 9 0 R 13 0 R]
+>>
+endobj
+14 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+xref
+0 15
+0000000000 65535 f 
+0000000009 00000 n 
+0000017421 00000 n 
+0000000030 00000 n 
+0000000105 00000 n 
+0000000179 00000 n 
+0000000255 00000 n 
+0000012961 00000 n 
+0000012982 00000 n 
+0000013060 00000 n 
+0000013140 00000 n 
+0000017238 00000 n 
+0000017259 00000 n 
+0000017338 00000 n 
+0000017510 00000 n 
+trailer
+<<
+/Size 15
+/Root 14 0 R
+/Info 1 0 R
+>>
+startxref
+17553
+%%EOF

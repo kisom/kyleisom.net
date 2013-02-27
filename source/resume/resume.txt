@@ -1,0 +1,62 @@
+NAME
+     Kyle Isom - software security engineer
+
+SYNOPSIS
+     Personal Site: http://www.kyleisom.net
+     Email: kyle@kyleisom.net
+
+SKILLS
+     -	  Development: C, Python, Clojure, Objective-C, UNIX / POSIX
+	  programming, network programming, security engineering
+     -	  Software Engineering: GNU Autotools suite, LaTeX, Texinfo, mandoc
+     -	  Development Tools: Valgrind, lint, rats, vim, emacs
+     -	  Development Cycle: I know how to do the other engineering involved
+	  with software projects, such as documentation, build system setup,
+	  and developing useful unit tests.
+     -	  Security: I have a strong background in computer security,
+	  particularly the field of secure programming. Some of my security
+	  skills include penetration testing, reverse engineering, and
+	  proactive network defense.
+
+WORK EXPERIENCE
+     Echostar Technologies, L.L.C. (Englewood, CO / Software Security
+	  Engineer)
+	  -    July 2010 - Present
+	  -    Conduct code reviews and audits in C and C++.
+	  -    Patch Linux kernel for embedded devices to address site-
+	       specific security requirements.
+	  -    Write Python code to generate encrypted software updates for
+	       Linux-based set top boxes.
+
+SELECTED PROJECTS AND PUBLICATIONS
+     Crypto Intro (Python)
+	  -    An introduction to Cryptography with PyCrypto
+	  -    Published June 2011
+	  -    Introduces cryptography to developers who may not have a solid
+	       understanding of not only what cryptography is, but also when
+	       to use it.
+	  -    Uses Python to clearly introduce how to properly integrate
+	       cryptography into projects.
+     Woofs (Python)
+	  -    Woofs GitHub page.: http://www.github.com/kisom/woofs/
+	  -    Share files easily from the commandline.
+	  -    Published July 2011
+	  -    Designed to quickly share a file over HTTPS.
+	  -    Addresses the fact that similar programs were not using
+	       TLS/SSL.
+     srvwd (C)
+	  -    srvwd homepage.: http://www.tyrfingr.is/projects/srvwd/
+	  -    Serve Working Directory
+	  -    Minimal web server written in ANSI C.
+	  -    Serves the current working directory
+	  -    Forking webserver that can be chrooted for security.
+	  -    Designed to specifically facilitate rapid testing of
+	       statically-generated sites.
+     FlexArgs (Objective-C)
+	  -    Github page.: https://github.com/kisom/flexargs
+	  -    Flexible parse command line options.
+
+SEE ALSO
+     Github profile.: https://github.com/kisom/
+     Bitbucket profile.: https://bitbucket.org/kisom/
+     Unix and C coding portfolio.: https://www.tyrfingr.is

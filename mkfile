@@ -1,4 +1,5 @@
-REMOTE=brokenlcd.net:sites/blog.tyrfingr.is
+REMOTE=brokenlcd.net:sites/kyleisom.net
+TESTREMOTE=brokenlcd.net:sites/blog.tyrfingr.is
 SRVWD=cachesrv
 BUILD=_site
 all:V:site
@@ -11,3 +12,5 @@ clean:V:
         rm -rf $BUILD/*
 preview:V:
         $SRVWD $BUILD
+test:V:
+       rsync -auvz $BUILD/* $TESTREMOTE 

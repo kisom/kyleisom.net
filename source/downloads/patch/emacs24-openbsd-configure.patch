@@ -1,0 +1,37 @@
+diff -rupN ./emacs-24.1/Makefile.in ./emacs-24.1-patched/Makefile.in
+--- ./emacs-24.1/Makefile.in	Mon Jun 11 17:33:21 2012
++++ ./emacs-24.1-patched/Makefile.in	Mon Jun 11 17:39:06 2012
+@@ -128,7 +128,7 @@ libexecdir=@libexecdir@
+ mandir=@mandir@
+ man1dir=$(mandir)/man1
+ MAN_PAGES=ctags.1 ebrowse.1 emacs.1 emacsclient.1 etags.1 \
+-          grep-changelog.1 rcs-checkin.1
++ 	  grep-changelog.1 rcs-checkin.1
+ 
+ # Where to install and expect the info files describing Emacs.	In the
+ # past, this defaulted to a subdirectory of ${prefix}/lib/emacs, but
+@@ -652,11 +652,7 @@ install-arch-indep: mkdir info install-etc
+ 	for page in ${MAN_PAGES}; do \
+ 	  (cd $${thisdir}; \
+ 	   ${INSTALL_DATA} ${mansrcdir}/$${page} $(DESTDIR)${man1dir}/$${page}; \
+-	   chmod a+r $(DESTDIR)${man1dir}/$${page}; \
+-	   if [ -n "${GZIP_INFO}" ] && [ -n "${GZIP_PROG}" ]; then \
+-	     rm -f $(DESTDIR)${man1dir}/$${page}.gz; \
+-	     ${GZIP_PROG} -9n $(DESTDIR)${man1dir}/$${page}; \
+-	   else true; fi ); \
++	   chmod a+r $(DESTDIR)${man1dir}/$${page}); \
+ 	done
+ 
+ ## Install those items from etc/ that need to end up elsewhere.
+diff -rupN ./emacs-24.1/configure.in ./emacs-24.1-patched/configure.in
+--- ./emacs-24.1/configure.in	Mon Jun 11 17:33:14 2012
++++ ./emacs-24.1-patched/configure.in	Mon Jun 11 17:37:16 2012
+@@ -153,7 +153,7 @@ fi
+ dnl _ON results in a '--without' option in the --help output, so
+ dnl the help text should refer to "don't compile", etc.
+ OPTION_DEFAULT_ON([xpm],[don't compile with XPM image support])
+-OPTION_DEFAULT_ON([jpeg],[don't compile with JPEG image support])
++OPTION_DEFAULT_OFF([jpeg],[don't compile with JPEG image support])
+ OPTION_DEFAULT_ON([tiff],[don't compile with TIFF image support])
+ OPTION_DEFAULT_ON([gif],[don't compile with GIF image support])
+ OPTION_DEFAULT_ON([png],[don't compile with PNG image support])

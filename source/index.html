@@ -6,7 +6,7 @@ title: kyleisom.net
 {% for post in site.posts %}  
 <div class="row">
 <div class="span1">
-<span class="label inverse">{{ post.date | date: "%m.%d.%y" }}</span>
+<span class="label inverse">{{ post.date | date: "%Y.%m.%d" }}</span>
 </div>
 <div class="span6">
 <span><a href="{{ post.url }}">{{ post.title }}</a></span>

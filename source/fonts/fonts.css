@@ -1,0 +1,21 @@
+@font-face {
+        font-family: 'Titillium Web';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Titillium Web'), local('TitilliumWeb-Regular'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v1/7XUFZ5tgS-tD6QamInJTcZ_o9VAbKgK36i-4snuAuCM.woff) format('woff');
+}
+
+@font-face {
+        font-family: 'Jura';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Jura Regular'), local('Jura-Regular'), url(/fonts/jura.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url(/fonts/ubuntu.woff) format('woff');
+}
+
