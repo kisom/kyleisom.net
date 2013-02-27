@@ -1,0 +1,16 @@
+---
+layout: default
+---	
+
+<h3>{{ page.title }}</h3>
+<h6><small>posted on {{ page.date | date: "%Y-%m-%d" }}</small></h6>
+<br />
+<p>{{ content }}</p>
+<br />
+<hr>
+<h5>Related Posts</h5>
+<ul>
+{% for related in site.related_posts limit:3 %}
+<li><a href="{{ related.url }}">{{ related.title }}</a></li>
+{% endfor %}
+</ul>
