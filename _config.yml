@@ -1,0 +1,7 @@
+markdown: redcarpet2
+LSI: true
+permalink: /blog/:year/:month/:day/:title
+pygments: true
+redcarpet:
+#  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
+  extensions: ["fenced_code_blocks"]

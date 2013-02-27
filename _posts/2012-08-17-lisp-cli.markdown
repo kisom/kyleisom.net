@@ -1,0 +1,143 @@
+---
+layout: post
+title: "Building Lisp Command Line Programs Using SBCL"
+date: 2012-08-17 18:11
+comments: false 
+categories: [development, lisp]
+keywords: [development, lisp, command line, sbcl, common lisp, quicklisp]
+---
+
+One of the challenges I had with Common Lisp initially was using it write
+standalone programs. I've gotten a chance now to build several, and I'll
+share some of the stuff I've learned. I'm still fairly new to Lisp, and
+I'm certain there are a number of drawbacks, but this helped make Lisp more
+useful to me and there to start using it more. This does assume you have a
+Quicklisp-enabled Common Lisp environment.
+
+The first step is to write in the code to parse command line options. 
+Fortunately, There is a Lisp implementation of [Getopt](getopt!) 
+available via Quicklisp (or via it's author).
+
+Just as with the C and Python versions of the library (and possibly
+others), the Getopt library provides the `getopt` function. The first
+thing you probably want to do is define your options. The flag
+definition is a little different and is a list of lists; each sublist
+has two elements, '(flag argument-specifier. These specifiers are one of:
+
+* `:none` - the option takes no arguments
+* `:optional` - the option may take an argument
+* `:required` - option requires an argument
+
+Note that if an option requires an argument, and one isn't passed, the 
+option is ignored. For example, if we had `'("f" :required)` in our
+options, and the program was called with `/path/to/foo -f`, the `f` would
+just be ignored and skipped over.
+
+As an example, let's write a program that fetches a web page, similar
+to [curl](http://curl.haxx.se/) or
+[wget](http://www.gnu.org/software/wget/). We'll use the options `-h`
+to print a help message and `-o <filename>` to write the url to a
+file. For simplicity's sake, we'll only accept the first argument as
+the url to download.
+
+A typical session might look like this:
+
+    <onosendai: ~> $ url-fetch -o macro.lisp http://weitz.de/macros.lisp
+    <onosendai: ~> $ ls macros.lisp
+    macros.lisp
+
+This is a very basic version to highlight building a CLI, so it
+doesn't do anything fancy like change 'weitz.de/macros.lisp' to
+'http://weitz.de/macros.lisp' (drakma requires the protocol to be
+specified), and the sample code doesn't handle errors well: it will
+just dump to the debugger. The topic of error handling is best
+described [elsewhere](http://gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html),
+and this example program is just the bare minimum to illustrate the
+point. With those caveats, let's look at an example `main` function to
+handle command line arguments:
+
+```common-lisp
+    (defparameter *opts* '(("o" :required)
+                           ("h" :none)))
+                           
+    (defun main ()
+      (let ((argv (subeq sb-ext:*posix-argv* 1))
+            (write-to-file nil))
+        (multiple-value-bind (args opts)
+            (getopt:getopt argv *opts*)
+          (when (empty-p (car arg))
+            (help-message))
+          (dolist (opt opts)
+            (case (car opt)
+              ("h" (help-message))
+              ("o" (setf write-to-file (cdr opt)))))
+          (fetch-url (car arg) write-to-file))))
+```
+
+Setting `argv` to everything after the first argument will skip the
+program name; this is just for convenience and isn't strictly
+required. It does, however, make the car of the argument list the
+first argument passed in. As `getopt` returns multiple values, we'll
+want to use `multiple-value-bind` to get at the opts and args. Note
+that `args` is a list of strings containing the arguments, and `opts`
+is an assoc list. For example, a typical return might be:
+
+```common-lisp
+    (multiple-value-bind (args opts)
+        (getopt:getopt argv *opts*)
+      (format t "args: ~A~%opts: ~A~%" args opts))
+    args: (http://weitz.de/macros.lisp)
+    opts: ((o . macros.lisp))
+```
+
+If no args are passed in, a help message is printed (which also
+exits):
+
+```common-lisp
+    (defun help-message ()
+      (format t "usage: ~A [-h] [-o filename] url~%" (car sb-ext:*posix-argv*))
+      (format t "options:~%")
+      (format t "    -h            print this help message~%")
+      (format t "    -o filename   write url to filename~%~%")
+      (sb-ext:quit :unix-status 0))
+```
+
+This function is fairly standard, except possibly for the last
+line. `sb-ext` is a package containing SBCL's extensions. We saw this
+package earlier with `sb-ext:*posix-argv*`, which is simply a list of
+all the arguments passed in. In this case, `sb-ext:quit` exits from the
+image; the `unix-status` keyword sets the standard UNIX return
+value. You can use this to safely terminate the image.
+
+I've elided the actual download components, but assuming they are in
+place (using the function names in the main function), we can build
+our image. The relevant function is
+[`sb-ext:save-lisp-and-die`](http://www.sbcl.org/manual/Saving-a-Core-Image.html),
+and it's usage is fairly simple:
+
+```common-lisp
+    (sb-ext:save-lisp-and-die (pathname "~/bin/url-fetch")
+                              :executable t
+                              :toplevel #'url-fetch:main)
+```
+
+The `executable` keyword creates a standalone executable when
+true, and the `toplevel` keyword specifies the function to run
+when the image starts up. 
+
+We can write a utility function to take a list of
+[Quicklisp](http://www.quicklisp.org/) packages, an image name, and a
+toplevel function and use that to build an image.
+
+```common-lisp
+    (defun build-image (dep-list image-name toplevel)
+      (dolist (dep dep-list)
+        (ql:quickload dep))
+      (sb-ext:save-lisp-and-die (pathname image-name)
+                                :executable t
+                                :toplevel toplevel))
+```
+                                
+This is a fairly rough guide, but it should help to get you
+started. The example code is
+[available on Bitbucket](https://bitbucket.org/kisom/url-fetch/).
