@@ -1,5 +1,6 @@
 markdown: redcarpet2
-LSI: true
+lsi: false
+source: source
 permalink: /blog/:year/:month/:day/:title
 pygments: true
 exclude: ["mkfile"]
