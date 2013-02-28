@@ -3,6 +3,9 @@ layout: default
 title: "uses"
 ---
 
+<span class="label important">lobste.rs</span> <a href="/uses/interview.html">
+lobste.rs interview</a></span> from 2013.01.28.
+
 I love the format of [usesthis](http://usesthis.com/), so I decided to mimic
 it to explain my setup.
 
