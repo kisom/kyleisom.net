@@ -18,8 +18,6 @@ cached does not matter to the end user (with one exception: in the
 case of directories). The file cache is written in pure Go and has
 no external dependencies.
 
-<!-- more -->
-
 The canonical example for the package right now is the
 [cachesrv](http://gokyle.github.com/cachesrv) caching file server; the package
 also ships with unit tests and benchmarks:
@@ -52,15 +50,15 @@ is just a pretty version of the README file that ships with the package (which
 is itself just a conversion of the Godoc output to markdown). You can install
 via `go get`:
 
-    $ go get github.com/gokyle/filecache
-    $ go install github.com/gokyle/filecache
+     $ go get github.com/gokyle/filecache
+     $ go install github.com/gokyle/filecache
 
 Alternatively, you can clone the repository; to build with the Go toolchain:
 
-    $ git clone https://github.com/gokyle/filecache.git
-    $ cd filecache
-    $ go build
-    $ go install
+     $ git clone https://github.com/gokyle/filecache.git
+     $ cd filecache
+     $ go build
+     $ go install
 
 The package is licensed under an ISC license; it is also well documented,
 so you can get more information using `godoc`: `godoc github.com/gokyle/`
@@ -72,7 +70,6 @@ in your browser.
 The first thing that needs to be done to use the package is to import it:
 
 `import "github.com/gokyle/filecache"` or add
-
 
     "github.com/gokyle/filecache"
 
