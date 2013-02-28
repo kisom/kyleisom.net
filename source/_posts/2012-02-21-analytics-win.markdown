@@ -4,6 +4,7 @@ title: "Analytics Win"
 date: 2012-02-21 12:15
 comments: true
 categories: [development, site, meta]
+keywords: [github pages, analytics, mint, cloudflare, google analytics]
 ---
 
 Inexplicably, for the longest time I was reticent to enable any sort of

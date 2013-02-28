@@ -3,7 +3,9 @@ layout: post
 title: Introducing ctrans
 date: 2011-05-13 00:00
 comments: true
-categories: python development concurrency unicode
+categories: [python, development, concurrency, unicode]
+keywords: [python, translation, unicode, concurrency, zeus source code, google translate, encodings]
+tags: [python, translation, unicode, concurrency, zeus source code, google translate, encodings]
 ---
 
 intro

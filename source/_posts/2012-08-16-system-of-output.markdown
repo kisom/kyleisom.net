@@ -5,6 +5,7 @@ date: 2012-08-16 06:30
 comments: true
 categories: [development]
 keywords: [development]
+tags: [development, debugging]
 ---
 
 In a SILC channel I frequent, I was showing [Steve Olsen](http://saolsen.tumblr.com)

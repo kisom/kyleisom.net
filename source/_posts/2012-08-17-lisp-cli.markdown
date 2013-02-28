@@ -5,6 +5,7 @@ date: 2012-08-17 18:11
 comments: false 
 categories: [development, lisp]
 keywords: [development, lisp, command line, sbcl, common lisp, quicklisp]
+tags: [development, lisp, command line, sbcl, common lisp, quicklisp]
 ---
 
 One of the challenges I had with Common Lisp initially was using it write

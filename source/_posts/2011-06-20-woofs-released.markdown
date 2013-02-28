@@ -4,6 +4,8 @@ title: woofs released
 date: 2011-06-20 00:00
 comments: true
 categories: [python, security]
+keywords: [python, secure file transfer, SSL, woofs]
+tags: [python, secure file transfer, SSL, woofs]
 ---
 
 ## web one-time offer file securely

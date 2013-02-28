@@ -4,6 +4,8 @@ title: "So, You Want To Unit Test in Xcode (Part 2)"
 date: 2012-03-16 12:13
 comments: true
 categories: [xcode, objective-c, development, testing]
+keywords: [xcode, unit testing, objective c, objective-c, iOS development, iOS unit testing, OCUnit, flexargs, guard-xcode, ruby-guard]
+tags: [xcode, unit testing, objective c, objective-c, iOS development, iOS unit testing, OCUnit, flexargs, guard-xcode, ruby-guard]
 ---
 
 In the [last post](/blog/2012/03/15/so-you-want-to-unit-test-in-xcode), I 

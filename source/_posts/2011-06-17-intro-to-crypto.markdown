@@ -3,7 +3,9 @@ layout: post
 title: A Working Introduction to Crypto with PyCrypto
 date: 2011-06-17 16:15
 comments: true
-categories: cryptography python introduction
+categories: [cryptography, python, introduction]
+keywords: [pycrypto, python, cryptography, applied cryptography, public key cryptography, private key cryptography, symmetric, asymmetric, cryptographic digests, hashing, hybrid keys, cryptographic keys]
+tags: [pycrypto, python, cryptography, applied cryptography, public key cryptography, private key cryptography, symmetric, asymmetric, cryptographic digests, hashing, hybrid keys, cryptographic keys]
 ---
 ## Preface
 This document was originally a LaTeX document; I've taken the pains to

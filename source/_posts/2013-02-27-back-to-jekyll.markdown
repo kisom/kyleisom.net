@@ -4,6 +4,8 @@ title: "Back to Jekyll"
 date: 2013-02-27 21:00
 comments: true
 categories: [blog, publishing]
+keywords: [jekyll, octopress, markdown, blog, publishing]
+tags: [jekyll, octopress, markdown, blog, publishing]
 ---
 
 After a long while using [octopress](octopress), I decided to switch

@@ -4,6 +4,7 @@ title: "Noir v. Flask"
 date: 2012-01-28 18:49
 comments: true
 categories: [Python, Clojure, Noir, Flask, web, TDD]
+keywords: [flask, python, rest api, clojure, noir, benchmark]
 ---
 
 Noir v. Flask: the shootout

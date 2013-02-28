@@ -4,6 +4,8 @@ title: "filecache.go"
 date: 2012-11-28 18:38
 comments: false
 categories: [golang, development]
+tags: [http, cache, caching, development, golang,]
+keywords: [http, cache, caching, development, golang,]
 ---
 
 `filecache` is a very basic implementation of an HTTP-aware file cache

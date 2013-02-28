@@ -4,6 +4,8 @@ title: "Benchmarking a Go webserver"
 date: 2012-11-23 02:02
 comments: true
 categories: [ golang, benchmarks, development, hacking ]
+keywords: [golang, benchmarks, development, hacking, python, ruby, nginx, flask, wrk, srvwd]
+tags: [golang, benchmarks, development, hacking, python, ruby, nginx, flask, wrk, srvwd]
 ---
 
 **Update** (2012/11/26): Adding gevent python example from [@deepwalker](https://twitter.com/deepwalker)

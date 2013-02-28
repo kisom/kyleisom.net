@@ -4,6 +4,8 @@ title: back to lisp
 date: 2012-01-02 00:00
 comments: true
 categories: [lisp, hacking, commitlog]
+keywords: [lisp, common lisp, rosetta code, sbcl, on lisp, ansi common lisp, symbolic computation, drakma, quicklisp, scheme, clojure]
+tags: [lisp, common lisp, rosetta code, sbcl, on lisp, ansi common lisp, symbolic computation, drakma, quicklisp, scheme, clojure]
 ---
 
     commit e358120dd3760e64436f5652895c751b39148ebd

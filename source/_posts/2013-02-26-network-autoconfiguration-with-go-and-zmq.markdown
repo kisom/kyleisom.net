@@ -4,6 +4,8 @@ title: "Network Autoconfiguration with Go and ØMQ"
 date: 2013-02-26 22:00
 comments: true
 categories: [development, golang, distributed systems, ØMQ]
+tag: [development, golang, distributed systems, ØMQ, networking, EPGM, multicast, virtual machine]
+keywords: [development, golang, distributed systems, ØMQ, networking, EPGM, multicast, virtual machine]
 ---
 
 Lately, I've found myself playing with building distributed systems using

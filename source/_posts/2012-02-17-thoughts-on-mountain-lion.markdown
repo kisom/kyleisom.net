@@ -4,6 +4,7 @@ title: "Thoughts on Mountain Lion"
 date: 2012-02-17 20:16
 comments: true
 categories: [OS X]
+keywords: [OS X, mountain lion, Mac App Store, app store, message, iMessage, XCode]
 ---
 
 One of the great things about paradigm shifts is we can throw out the old

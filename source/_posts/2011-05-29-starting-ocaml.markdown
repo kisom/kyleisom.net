@@ -4,6 +4,7 @@ title: starting ocaml
 date: 2011-05-29 00:00
 comments: true
 categories: [ocaml, development]
+keywords: [ocaml, tuareg, objective caml, o'caml, findlib]
 ---
 i recently started learning 
 [objective caml](http://caml.inria.fr/index.en.html). while it may be

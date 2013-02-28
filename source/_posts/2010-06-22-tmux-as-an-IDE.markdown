@@ -5,6 +5,7 @@ date: 2010-06-22 11:59
 comments: true
 categories: [tmux, ide, development, shell]
 keywords: [tmux, ide, development, shell]
+tags: [tmux, development, shell, fedora, red hat]
 ---
 
 It may not sound feasible, but I currently use tmux as my IDE. Getting it 

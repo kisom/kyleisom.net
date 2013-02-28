@@ -4,7 +4,8 @@ title: "Compiling Source Navigator in Ubuntu 10.04"
 date: 2010-07-22 13:21
 comments: true
 categories: [ubuntu, source navigator, snav]
-
+keywords: [source navigator, ubuntu]
+tags: [source navigator, ubuntu]
 ---
 
 Compiling source navigator under Ubuntu 10.04 is fairly easy once you

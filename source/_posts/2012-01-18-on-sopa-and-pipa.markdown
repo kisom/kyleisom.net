@@ -4,6 +4,8 @@ title: on SOPA and PIPA
 date: 2012-01-18 00:00
 comments: true
 categories: [musings, political, censorship]
+keywords: [sopa, pipa, political, censorship, musings]
+tags: [sopa, pipa, political, censorship, musings]
 ---
 
 Imagine you are the owner of a small restaurant. The neighbourhood is of mixed 

@@ -5,6 +5,8 @@ tagline: "An Introudction to Channels and Goroutines"
 date: 2012-09-06 18:10
 comments: true
 categories: [golang, go, hacking, development, concurrency]
+tags: [golang, concurrency, sequence numbers, goroutines, channels]
+keywords: [golang, concurrency, sequence numbers, goroutines, channels]
 ---
 
 One of my current projects requires a counter that delivers a monotonically

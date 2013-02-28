@@ -5,14 +5,14 @@ subtitle: "or how I learned to live without colours"
 date: 2012-10-17 02:02
 comments: true
 categories: [ development ]
+keywords: [vim, acme, syntax, syntax highlighting]
+tags: [vim, acme, syntax, syntax highlighting]
 ---
 
 Recently, I made a major change to my `.vimrc`: I turned syntax off. I
 struggled with this choice, since I used to rather enjoy the shininess
 of a well-done vim colour scheme. It's been about two weeks now, and I
 have no regrets. How did I end up here?
-
-<!-- more -->
 
 It started when I gave the [acme](https://research.swtch.com/acme) editor
 a try. The acme editor uses no syntax highlighting, as per Rob Pike's

@@ -4,6 +4,8 @@ title: "Introducing simple-email"
 date: 2012-06-26 20:04
 comments: true
 categories: [clojure development]
+keywords: [clojure, email, apache commons, java, clojars, simple-email]
+tags: [clojure, email, apache commons, java, clojars, simple-email]
 ---
 
 Recently, I was planning out a new [Clojure](http://www.clojure.org) project,

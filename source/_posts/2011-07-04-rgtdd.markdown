@@ -4,6 +4,8 @@ title: RGTDD
 date: 2011-07-04 00:00
 comments: true
 categories: productivity
+keywords: [README, README driven development, TDD, test-driven development, documentation, specification, specification lock]
+tags: [README, README driven development, TDD, test-driven development, documentation, specification, specification lock]
 ---
 
 One of the most important parts of becoming a useful developer is to find a

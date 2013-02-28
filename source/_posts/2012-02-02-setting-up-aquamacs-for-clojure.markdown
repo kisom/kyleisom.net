@@ -4,6 +4,8 @@ title: Setting Up Aquamacs for Clojure
 date: 2012-02-02 20:03
 comments: true
 categories: [emacs, clojure, mac, development, aquamacs]
+keywords: [emacs, clojure, mac, marmalade, leiningen, slime, package.el, aquamacs]
+tags: [emacs, clojure, mac, marmalade, leiningen, slime, package.el, aquamacs]
 ---
 It took me a bit to get my [Aquamacs](http://www.aquamacs.org) install
 up and ready to do [Clojure](http://www.clojure.org)

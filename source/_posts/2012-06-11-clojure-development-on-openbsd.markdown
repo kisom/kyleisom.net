@@ -4,6 +4,8 @@ title: "Clojure Development on OpenBSD"
 date: 2012-06-11 18:24
 comments: false
 categories: [emacs, clojure, openbsd, development, slime, swank, swank-clojure]
+keywords: [emacs, clojure, openbsd, development, slime, swank, swank-clojure]
+tags: [emacs, clojure, openbsd, development, slime, swank, swank-clojure]
 ---
 
 I was trying to get [emacs24](http://www.gnu.org/software/emacs/) installed on 

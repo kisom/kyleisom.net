@@ -4,6 +4,8 @@ title: on the police response to the occupy movement
 date: 2011-10-29 00:00
 comments: true
 categories: [musings, political]
+keywords: [police, occupy, politics, musings]
+tags: [police, occupy, politics, musings]
 ---
 
 (Originally written on 2011-10-29 and an unusual departure from the

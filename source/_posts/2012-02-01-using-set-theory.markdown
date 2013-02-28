@@ -4,6 +4,8 @@ title: Using Set Theory
 date: 2012-02-01 20:45
 comments: true
 categories: [math, coding, python, clojure]
+keywords: [set theory, python, clojure, collections, records, subset, set, list, notation, vector, sql]
+tags: [set theory, python, clojure, collections, records, subset, set, list, notation, vector, sql]
 ---
 In the [last post](/blog/2012/01/23/basic-set-theory/), we took a look at the
 basics of set theory. Now, I'd like to take a look at how to actually make use

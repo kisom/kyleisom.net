@@ -4,6 +4,8 @@ title: "carefree git and hg"
 date: 2012-02-22 16:52
 comments: true
 categories: [development, git, mercurial, shell, tools]
+tags: [git, mercurial, shell]
+keywords: [git, mercurial, shell]
 ---
 
 I was at an [Appsterdam](http://www.appsterdam.rs) lunch meetup today, and

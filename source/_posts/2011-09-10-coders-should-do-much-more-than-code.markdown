@@ -4,6 +4,8 @@ title: coders (should) do much more than code
 date: 2011-09-10 00:00
 comments: true
 categories: [coding, productivity]
+keywords: [build system, documentation, autotools, setuptools, CPAN, lteo, LICENSE, license file, README, distribution, testing, unit tests, support, maintenance]
+tags: [build system, documentation, autotools, setuptools, CPAN, lteo, LICENSE, license file, README, distribution, testing, unit tests, support, maintenance]
 ---
 
 I recently was explaining to someone that as a coder, I do (or should do)

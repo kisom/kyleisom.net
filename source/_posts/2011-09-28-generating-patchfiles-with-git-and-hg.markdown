@@ -4,6 +4,7 @@ title: generating patchfiles with git and hg
 date: 2011-09-28 00:00
 comments: true
 categories: [coding, productivity, git, mercurial]
+keywords: [patchfiles, patch, diff, format-patch, export, tip, git, mercurial]
 ---
 UPDATE: originally this post was only about doing this in git. Since I use
 mercurial almost as much as I use git, I decided to look into how to do it

@@ -3,7 +3,9 @@ layout: post
 title: Basic Set Theory
 date: 2012-01-23 17:44
 comments: true
-categories: math coding python clojure introduction
+categories: [math, coding, python, clojure, introductions]
+keywords: [math, set theory, properties of sets, set union, set intersection, set difference, set complement]
+tags: [math, set theory, properties of sets, set union, set intersection, set difference, set complement]
 ---
 Recently, I was explaining to someone the basics of set theory and how the 
 various basic operations translate to the real world. I used the example of the

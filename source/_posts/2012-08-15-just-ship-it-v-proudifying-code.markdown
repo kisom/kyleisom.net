@@ -5,6 +5,7 @@ date: 2012-08-15 18:17
 comments: true
 categories: [development]
 keywords: [development]
+tags: [development, shipping]
 ---
 
 I was recently working on a [project](http://kisom.github.com/lobsterpie) 

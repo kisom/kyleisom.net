@@ -4,6 +4,8 @@ title: "Autonomous Vehicles"
 date: 2012-02-26 17:33
 comments: true
 categories: [robotics, development, python]
+keywords: [robotics, python, udacity, xkcd, probablility distributions, autonomous vehicles]
+tags: [robotics, python, udacity, xkcd, probablility distributions, autonomous vehicles]
 ---
 
 I just finished up the first unit of [Udacity's](http://www.udacity.com) 

@@ -4,6 +4,7 @@ title: add .emacs.d/init.el
 date: 2011-11-28 00:00
 comments: true
 categories: [coding, productivity, commitlog, emacs]
+keywords: [emacs, os x, lisp]
 ---
 
 In the spirit of many of my online profiles which proudly declare "my

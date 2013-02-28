@@ -4,6 +4,8 @@ title: "Undefined symbol errors in Lisp"
 date: 2012-07-18 19:50
 comments: true
 categories: [common-lisp, lisp, development, hacking]
+tags: [common lisp, lisp, development, debugging, lisp macros]
+keywords: [common lisp, lisp, development, debugging, lisp macros]
 ---
 
 The other day, I got a strange error while writing a macro (actually,

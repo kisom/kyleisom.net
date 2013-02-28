@@ -4,6 +4,8 @@ title: suddenly enlightenment
 date: 2011-12-03 00:00
 comments: true
 categories: [productivity, coding, git, commitlog]
+keywords: [git, git hooks, git tree, version control with git, woofs, SHA-1, GIT_DIR, GIT_WORK_TREE]
+tags: [git, git hooks, git tree, version control with git, woofs, SHA-1, GIT_DIR, GIT_WORK_TREE]
 ---
 
 It's been almost 28 hours since I last slept, so I apologise if this
