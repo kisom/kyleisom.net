@@ -12,5 +12,5 @@ clean:V:
         rm -rf $BUILD/*
 preview:V:
         $SRVWD $BUILD
-test:V:
+test:V:site
        rsync -auvz $BUILD/* $TESTREMOTE 
