@@ -24,24 +24,23 @@ The canonical example for the package right now is the
 [cachesrv](http://gokyle.github.com/cachesrv) caching file server; the package
 also ships with unit tests and benchmarks:
 
-```
-$ go test -test.bench=Bench
-[+] testing cache start up and shutdown: ok[+] ensure item expires after ExpireItem: ok
-[+] ensure accessing an item prevents it from expiring: ok
-[+] validate file modification expires item: ok
-[+] testing asynchronous file caching: ok
-[*] item cached in 20µs
-[+] testing background expiration: ok
-[+] validating item limit on cache: ok
-[+] validating no time limit expirations: ok
-[+] testing transparent file reads: ok
-PASS
-BenchmarkAsyncCaching      10000            105571 ns/op
-BenchmarkSyncCaching       50000             63304 ns/op
-ok      github.com/gokyle/filecache     14.038s
-```
+    $ go test -test.bench=Bench
+    [+] testing cache start up and shutdown: ok
+    [+] ensure item expires after ExpireItem: ok
+    [+] ensure accessing an item prevents it from expiring: ok
+    [+] validate file modification expires item: ok
+    [+] testing asynchronous file caching: ok
+    [*] item cached in 20µs
+    [+] testing background expiration: ok
+    [+] validating item limit on cache: ok
+    [+] validating no time limit expirations: ok
+    [+] testing transparent file reads: ok
+    PASS
+    BenchmarkAsyncCaching      10000            105571 ns/op
+    BenchmarkSyncCaching       50000             63304 ns/op
+    ok      github.com/gokyle/filecache     14.038s
 
-If you run the tests, you should run from the `filecache` directoy; I've used
+If you run the tests, you should run from the `filecache` directory; I've used
 the source code as a test file in some of the tests. The tests will take a
 little bit of time to complete; the expiration schedulers and cache expiries
 are all specified in seconds, and therefore there are several delays in the
@@ -53,20 +52,15 @@ is just a pretty version of the README file that ships with the package (which
 is itself just a conversion of the Godoc output to markdown). You can install
 via `go get`:
 
-```
-$ go get github.com/gokyle/filecache
-$ go install github.com/gokyle/filecache
-```
+    $ go get github.com/gokyle/filecache
+    $ go install github.com/gokyle/filecache
 
 Alternatively, you can clone the repository; to build with the Go toolchain:
 
-```
-$ git clone https://github.com/gokyle/filecache.git
-$ cd filecache
-$ go build
-$ go install
-```
-
+    $ git clone https://github.com/gokyle/filecache.git
+    $ cd filecache
+    $ go build
+    $ go install
 
 The package is licensed under an ISC license; it is also well documented,
 so you can get more information using `godoc`: `godoc github.com/gokyle/`
@@ -79,9 +73,9 @@ The first thing that needs to be done to use the package is to import it:
 
 `import "github.com/gokyle/filecache"` or add
 
-```
-"github.com/gokyle/filecache"
-```
+
+    "github.com/gokyle/filecache"
+
 to your import list.
 
 There are two ways to create a new cache; the most useful is `NewDefaultCache`.
@@ -99,9 +93,7 @@ store. I've provided some convience values to help you make your code more
 readable; you can use the `Kilobyte`, `Megabyte`, and `Gigabyte` values with
 a multiplier. For example, `DefaultMaxSize` is defined in `filecache.go` as
 
-```
-DefaultMaxSize = 16 * Megabyte
-```
+    DefaultMaxSize = 16 * Megabyte
 
 * `DefaultMaxItems` controls the maximum number of items a cache can store
 by default. Obviously, MaxItems * MaxSize shouldn't be greater than the
@@ -130,7 +122,7 @@ shut down properly, these background will be able to shut down safely on
 their own. The `Start` method returns an error; if one occurs, you should
 not use the cache.
 
-```
+```go
 package main
 
 import "github.com/gokyle/filecache"
@@ -208,7 +200,7 @@ internal data structures.
 In this example, the client sends WriteRequest values through a channel
 that the file cache should respond to:
 
-```
+```go
 // WriteRequest represents a client request; the Receiver should be sent
 // the contents of the file specified by the FileName field.
 type WriteRequest struct {

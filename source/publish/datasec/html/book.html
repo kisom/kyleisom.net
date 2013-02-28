@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="Kyle Isom" />
+    <meta name="date" content="10/02/2012"/>
+    <meta name="generator" content="easybook 4"/>
+
+    <title>Practical Data Security</title>
+
+        <link rel="stylesheet" href="./css/easybook.css" />
+    
+    </head>
+
+<body><div id="wrapper">
+
+    <div class="page:cover new-page">
+
+<h1>Practical Data Security</h1>
+
+<h2>Kyle Isom</h2>
+
+</div>
+    <div class="page:toc new-page">
+
+<h1>Table of contents</h1>
+
+<ul>
+                                
+                                                                <li class="chapter level-1">
+                        <span>Chapter  </span> <a href="#introduction">Introduction</a>
+                    </li>
+                            
+                            
+                                                                <li class="chapter level-1">
+                        <span>Chapter 1 </span> <a href="#introduction-to-data-security">Introduction to Data Security</a>
+                    </li>
+                            
+                            
+                                                                <li class="chapter level-1">
+                        <span>Chapter 2 </span> <a href="#practical-introduction-to-cryptography">Practical Introduction to Cryptography</a>
+                    </li>
+                                                                <li class="chapter level-2">
+                        <span>2.1</span> <a href="#introduction-3">Introduction</a>
+                    </li>
+                                                                <li class="chapter level-2">
+                        <span>2.2</span> <a href="#block-ciphers">Block Ciphers</a>
+                    </li>
+                                                                <li class="chapter level-2">
+                        <span>2.3</span> <a href="#ascii-armouring">ASCII-Armouring</a>
+                    </li>
+                                                                                                                                                    <li class="chapter level-2">
+                        <span>2.4</span> <a href="#public-key-cryptography">Public Key Cryptography</a>
+                    </li>
+                                                                <li class="chapter level-2">
+                        <span>2.5</span> <a href="#digital-signatures">Digital Signatures</a>
+                    </li>
+                                                                <li class="chapter level-2">
+                        <span>2.6</span> <a href="#key-exchange">Key Exchange</a>
+                    </li>
+                            
+                            
+                                                                <li class="chapter level-1">
+                        <span>Chapter 3 </span> <a href="#practical-threat-modeling">Practical Threat Modeling</a>
+                    </li>
+                                                                <li class="chapter level-2">
+                        <span>3.1</span> <a href="#identifying-attack-vectors">Identifying Attack Vectors</a>
+                    </li>
+                                                                <li class="chapter level-2">
+                        <span>3.2</span> <a href="#example">Example</a>
+                    </li>
+                            
+                            
+                                                                <li class="appendix level-1">
+                        <span>Appendix A </span> <a href="#bibliography">Bibliography</a>
+                    </li>
+                            
+                    </ul>
+
+</div>
+    <div class="page:acknowledgment new-page">
+
+<h1>Acknowledgements</h1>
+
+<p>This book almost certainly would not have been written were it not for the
+Pragmatic Programmers, LLC, and their PragProWriMo
+<a href="http://pragprog.com/magazines/2011-10/up-front">event</a>. Although I’ve had
+the idea to do this for a while, the PragProWriMo was the spark that ignited
+the fuel.</p>
+
+<p>I'd also like to thank the people who reviewed this book: Beau and Essie
+Holton, Matthew Sowers, and Clark Lester.</p>
+
+
+</div>
+    <div class="page:chapter new-page">
+
+<h1 id="introduction"><span>Chapter  </span> Introduction</h1>
+
+<p>This is a book about how to use data security practically. It’s written
+assuming that you are a coder who’s already writing cool and audacious
+projects, but you don’t have a background in writing secure systems. I also
+assume that you have a passing familiarity with UNIX-based operating
+systems; while I don’t expect you to be a UNIX wizard, I also expect you to
+not be terribly daunted when tinkering about the command line. I try not to
+get in your way and merely to facilitate a discussion in most cases about
+ways we as coders can write better applications for our users.</p>
+
+<p>The news headlines are full of stories about popular online services being
+com-promised. It’s becoming something that we are more used to living
+with. I think that we can do better. My particular interest in this problem
+started with two events that coincided: the first involved writing software
+for work to build encrypted updates for a project I was working on. I was
+doing this in Python, and so became fairly familiar with the 
+<a href="https://www.dlitz.net/software/pycrypto/">PyCrypto library</a>. 
+At the same time, a friend of mine was working on writing
+authentication code, also in Python. He was trying to use the PyCrypto
+library as well, but really didn’t understand how cryptography worked and
+how to apply it in this case. That inspired me to write a ten page
+introduction to cryptography (also illustrated with Python). I’ve been
+mulling over the idea of expanding that into a book on data security, and
+now the time has come to write it.</p>
+
+<p>From my perspective, a lot of the problem stems from a fundamental
+misunderstanding of what security is, and how to integrate it. I will try to
+address that issue here, and hopefully help other developers to understand
+not only why it’s important, but to see that it’s not just snake oil to be
+thrown into the mix so that it "just works."</p>
+
+<p>The book is subtitled Illustrated With Python, which I am slightly worried
+will discourage those not familiar with the Python language. I chose to use
+Python because it is both a language I am well familiar with, and because it
+is a very readable language. Readers should note that the emphasis in the
+book is not on the Python way to do things; readers who are familiar with
+Python will note that I shy away from idiomatic Python that will be
+difficult for those unfamiliar with the language to understand.</p>
+
+
+</div>
+    <div class="page:chapter new-page">
+
+<h1 id="introduction-to-data-security"><span>Chapter 1 </span> Introduction to Data Security</h1>
+
+<p>Data security is one of those things you hear a lot about, but most of us
+are busy getting things done; unfortunately for our users, data security
+tends to be put on the back-burner, if we remember it at all. Data security
+doesn't have to be a burden on the developer, and most importantly, it's in
+the best interest of users. One principle I particularly like for software
+engineering is the Principle of Least Astonishment.</p>
+
+<p><strong><em>THE PRINCIPLE OF LEAST ASTONISHMENT:</em></strong><br>
+<em>A program's behaviour should not surprise the end user.</em></p>
+
+<p>How does this relate to data security? A user never expects their data to be
+leaked out of the application or their information to be shared with people
+they dont intend for it to. This might be an explicit understanding or an
+implicit one, especially when users don't really understand the problem
+domain. If your users are from a wide range of backgrounds, they may not
+have a solid understanding of the basics of how to keep their information
+safe. In fact, they may not even realise what they don't know. So, it
+becomes even more important for developers to ensure that, as much as
+possible, their data is safe. What I will discuss in this book are ways to
+do that, while keeping in mind the misconception (not always true) that the
+more secure a system is, the less accessible it is. I'd like to address that
+misconception, and help you to make your applications as transparently
+secure as possible.</p>
+
+<p>The first thing we'll take a look at are some of the objectives of
+information security that are most generally applicable to software,
+i.e. those that we can address. Then we'll take a high-level walk through
+some basic UNIX security that's applicable (and perhaps on the Windows
+platform as well). Even if your application is a web application, it's
+probably running on a UNIX machine of some sort, and that represents an area
+that you should pay attention to as well. If you're a Windows developer,
+there will still be some information applicable, but you can probably skim
+through this part. Then we'll take a high level look at cryptography; I've
+chosen to stay away from deep mathematical discussions and only discuss
+those aspects you need to understand as a coder to effectively make use of
+it. Following that, we'll see a few scenarios where your code is
+vulnerable. The rest of this chapter will be a gentle introduction to each
+of those areas, and the rest of the book will flesh it out with code
+examples.
+<br>
+There are four information security principles you should keep in mind when
+writing software:</p>
+
+<ol>
+<li>Privacy </li>
+<li>Anonymity </li>
+<li>Repudiation </li>
+<li>Integrity</li>
+</ol>
+
+<p>Let's take a look at these in a little more depth, and see how they apply to the software we're writing.</p>
+
+<p>First, we visit the concepts of <strong>authentication</strong> and <strong>authorisation</strong>.
+Authentication is confirming the identity of a user--most often by way of a
+username (the user's identity) and password (the secret used to
+authenticate). Other ways of authentication include using smart cards, where
+the identity is given by the cryptographic key on the card and the
+authentication is done by entering a PIN to unlock the key, or perhaps using
+something like a one-time password token tied to an OpenID. Once the user's
+identity has been confirmed (the user is now <strong>authenticated</strong>), their
+access to resources is controlled by <strong>authorisation</strong>. Authorisation is the
+check to see "is this user allowed to do this?" If we look at this from the
+perspective of a user's ability to access files on a computer, they are
+typically authenticated by their login and password (or, on some laptops,
+via a login and fingerprint). When a user tries to read or write to a file,
+the system checks the access control list (an authorisation scheme) to see
+if the user is authorised to do this. Let's look at the Twitter application
+on a mobile as another example: when you try to use the app, you have to
+sign into twitter and authorise access on Twitter's website for the
+application. Your username and password authenticate you to Twitter, and
+then you choose to authorise the application's access to the site.
+Authentication and authorisation may be done by other means as well for
+entities other than users. We'll call any entity a user in this book, but
+that user might be a person, a computer, or something else entirely. With
+that dead horse beaten, we can move on.</p>
+
+<p>The principle of <strong>privacy</strong> states that information may only be viewed by
+those authorised to view it. In terms of UNIX files, a user might be able to
+log into a computer, but does not have access to read another user's files.
+On twitter, you can protect your timeline, so that only your friends can
+read your tweet. It's not unreasonable for a user to expect they can control
+who else has access to their resources; obviously a user with a public blog
+expects anyone to be able to read their posts, but they may not expect just
+anyone to see other details about that user. When you're designing an
+application, it helps to think about which pieces of information a user
+should have control over. Some applications will require fine-grained
+control--say it's designed so user A can choose to share one post only with
+group B and another post only with group C. Others will be
+course-grained--users in group B will always have access to posts by user A.</p>
+
+<p><strong>Anonymity</strong> is a hot topic these days with the so-called "nym wars" on
+Google+ as but one example. This boils down to the idea that, depending on
+your stance, a user should be able to separate their different identities
+from each other. In the Google+ debate, it's the idea that users want to be
+able to separate their real-world identity from their electronic identity.
+That is, my identity on Google+ may not be the same identity I want to use
+on my blog. This brings out another point about security: most security
+engineering isn't just a technical question; it's a social question. Many of
+our applications aren't just technical applications, but have social value
+as well; many security decisions are made by weighing social considerations.
+Your decision in regards to anonymity is going to be a social decision, but
+it should be decided while designing the application. Bolt-on security
+(added after the design phase) may be somewhat effective, but it tends to
+cause a lot of problems.</p>
+
+<p><strong>Repudiation</strong> is a fancy word that means the ability to deny ownership of
+information. You'll hear this term a lot in discussions about cryptography,
+particularly with digital signatures. If a user's data is <strong>repudiable</strong>,
+the user can plausibly deny owning that data (for example, user A might want
+to be able to deny having posted something unpopular about a sensitive
+topic). Conversely, if a user's information is <strong>non-repudiable</strong>, she
+cannot plausibly deny owning that information. I'll have more to say on this
+in a bit, but for now you know what I'm talking about when I bandy about the
+term like "non-repudiable."</p>
+
+<p>Users also want some degree of assurance that their data won't be changed or
+tampered with. This is the principle of <strong>data integrity</strong>--information may
+only be changed by people authorised to do so. This isn't just a security
+issue; natural disasters and junior sysadmins (some would say naming both is
+a redundancy) have a clever way of accidentally modifying your data without
+the user's authorisation. Of course, we expect (and probably constantly
+tell) users to backup their data, but your application may not be easily
+backed up by the user. There's also a case to be made for <strong>transparency</strong>
+in both showing users what data you have of theirs on your systems or in
+your application and allowing them to download or backup that information
+easily. Even data like photos, which are easy to back up, may come from a
+disparate number of sources, should be considered. For example, a user might
+upload photos from his phone, his laptop, and his tablet. All these
+different sources may make backing up more difficult, although far from
+impossible, and having one place to back them all up from may be useful.</p>
+
+<p>These basic principles are all properties to consider when designing your
+system; they fit alongside all the other software engineering principles
+like modularity that should be considered. It is far easier to design these
+in at the start than to try to bolt them on later.</p>
+
+<p>Another thing to think about is the use case for your software; namely, you
+might not be able to think of all the ways users will use the system. Of
+course, we'd like to think of our users as living in an ideal world where
+using real names isn't an issue and no one has anything to hide, but this is
+not the world we live in. You should also consider some of the challenges
+faced by users living in non-ideal places. If you're allowing people to
+upload data or users must download information to synchronise, consider that
+many users don't have high-speed internet or a large bandwidth cap. In many
+countries, power is at a premium, and users shut down their computers when
+they aren't using them out of economic necessity, instead of being able to
+leave them on. Users might also be living in restrictive regions where
+posting information critical of other people might be dangerous for them. If
+you have any desire for your software to have a global impact, you should
+consider them. If your application isn't region-specific, you should most
+certainly keep this in mind when designing your software.</p>
+
+<p>There are a couple areas you can start to actually design security into your
+code. First, there are the fundamental security mechanisms available on the
+platform you are coding on. There are coding errors that can lead to flaws,
+such as the well-known SQL injections and buffer overflows that are some of
+the mainstays of many successful attacks. There are mechanisms to secure
+data in transit (when the data is being accessed and used) and at rest (when
+the data is not being used). As coding errors have been dealt with quite
+effectively in many other books (see the bibliography for more), we'll focus
+on the fundamental security mechanisms and other data security mechanisms,
+and in particular, how we can use basic UNIX security mechanisms and
+cryptography effectively. We'll also consider some real world ways in which
+failing to secure your code can lead to an exploit.</p>
+
+
+</div>
+    <div class="page:chapter new-page">
+
+<h1 id="practical-introduction-to-cryptography"><span>Chapter 2 </span> Practical Introduction to Cryptography</h1>
+
+<h2 id="introduction-3">2.1 Introduction</h2>
+
+<p>This chapter is adapted from my introductory article to cryptography. We'll take
+a quick, high-level overview of cryptography. The 
+<a href="https://www.dlitz.net/software/pycrypto/">PyCrypto</a> and
+<a href="http://www.mindrot.org/projects/py-bcrypt/">py-bcrypt</a> libraries will be used
+to illustrate some general things to know when writing cryptographic code. 
+We'll take a look at symmetric, public-key, hybrid, cryptographic hashing, 
+password hashing, and message authentication codes.</p>
+
+<p>Some quick terminology: for those unfamiliar, it's important to know what these 
+mean:</p>
+
+<ul>
+<li><strong>plaintext</strong>: the original message</li>
+<li><strong>ciphertext</strong>: the message after cryptographic transformations are applied 
+to obscure the original message.</li>
+<li><strong>encrypt</strong>: producing ciphertext by applying cryptographic transformations
+to plaintext.</li>
+<li><strong>decrypt</strong>: producing plaintext by applying cryptographic transformations to
+ciphertext.</li>
+<li><strong>cipher</strong>: a particular set of cryptographic transformations providing means
+of both encryption and decryption.    </li>
+<li><strong>ciphersystem</strong>: a set of cryptographic transformations that take a large input and
+transform it to a unique (typically fixed-size) output. For hashes to be
+cryptographically secure, collisions should be practically nonexistent. It
+should be practically impossible to determine the input from the output.</li>
+</ul>
+
+<p>Cryptography is an often misunderstood component of information security. We 
+covered some information security principles in the previous chapter; the 
+ones that cryptography covers are:</p>
+
+<ul>
+<li><strong>privacy</strong> (aka <strong>confidentiality</strong>).    </li>
+<li><strong>data integrity</strong>: the plaintext message arrives unaltered.     </li>
+<li><strong>entity authentication</strong>: the identity of the sender is verified. An entity
+may be a person or a machine.   </li>
+<li><strong>message authentication</strong>: the message is verified as having been 
+unaltered.     </li>
+</ul>
+
+<p>Note that cryptography is used to obscure the contents of a message and verify
+its contents and source. It will <strong>not</strong> hide the fact that two entities are 
+communicating.</p>
+
+<p>There are two basic types of ciphers: symmetric and public-key ciphers. A 
+symmetric key cipher employs the use of shared secret keys. They also tend to
+be much faster than public-key ciphers. A public-key cipher is so-called because
+each key consists of a private key which is used to generate a public key. Like
+their names imply, the private key is kept secret while the public key is 
+passed around. First, I'll take a look at a specific type of symmetric ciphers:
+block ciphers.</p>
+
+<h2 id="block-ciphers">2.2 Block Ciphers</h2>
+
+<p>There are two further types of symmetric keys: stream and block ciphers. Stream
+ciphers operate on data streams, i.e. one byte at a time. Block ciphers operate
+on blocks of data, typically 16 bytes at a time. The most common block cipher
+and the standard one you should use unless you have a very good reason to use
+another one is the AES block cipher, documented in 
+<a href="http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf">FIPS PUB 197</a>.
+AES is a specific subset of the Rijndael cipher. AES uses block size of 
+128-bits (16 bytes); data should be padded out to fit the block size - the
+length of the data block must be multiple of the block size. For example, 
+given an input of <code>ABCDABCDABCDABCD ABCDABCDABCDABCD</code> no padding would
+need to be done. However, given <code>ABCDABCDABCDABCD ABCDABCDABCD</code> an 
+additional 4 bytes of padding would need to be added. A common padding scheme 
+is to use <code>0x80</code> as the first byte of padding, with <code>{0x00</code> bytes 
+filling out the rest of the padding. With padding, the previous example would 
+look like: <code>ABCDABCDABCDABCD ABCDABCDABCD\x80\x00\x00\x00</code>.</p>
+
+<p>Writing a padding function is pretty easy:</p>
+
+<pre><code>def pad_data(data):
+    # return data if no padding is required
+if len(data) % 16 == 0: 
+    return data
+
+    # subtract one byte that should be the 0x80
+    # if 0 bytes of padding are required, it means only
+    # a single \x80 is required.
+
+padding_required = 15 - (len(data) % 16)
+
+data = '%s\x80' % data
+data = '%s%s' % (data, '\x00' * padding_required)
+
+return data
+</code></pre>
+
+<p>Similarly, removing padding is also easy:</p>
+
+<pre><code>def unpad_data(data):
+if not data: 
+    return data
+
+data = data.rstrip('\x00')
+if data[-1] == '\x80':
+        return data[:-1]
+    else:
+        return data
+</code></pre>
+
+<p>I've included these functions in the 
+<a href="http://www.kyleisom.net/publish/datasec/code/chapter1.tar.gz">example code</a>
+for the book.</p>
+
+<p>Encryption with a block cipher requires selecting a 
+<a href="http://csrc.nist.gov/groups/ST/toolkit/BCM/index.html">block mode</a>.
+By far the most common mode used is <strong>cipher block chaining</strong> or 
+<em>CBC</em> mode. Other modes include <strong>counter (CTR)</strong>, 
+<strong>cipher feedback (CFB)</strong>, and the extremely insecure
+<strong>electronic codebook (ECB)</strong>. CBC mode is the standard and is 
+well-vetted, so I will stick to that in this tutorial. Cipher block chaining 
+works by XORing the previous block of ciphertext with the current block. You 
+might recognise that the first block has nothing to be XOR'd with; enter the 
+<em><a href="http://www.cs.ucdavis.edu/~rogaway/papers/nonce.pdf">initialisation vector</a></em>. 
+This comprises a number of randomly-generated bytes of data the same
+size as the cipher's block size. This initialisation vector should random 
+enough that it cannot be recovered; one manner of doing this is to combine a
+standard UNIX timestamp with a block-size group of random data, using a standard
+hashing algorithm such as MD5 to make it unique.</p>
+
+<p>One of the most critical components to encryption is properly generating 
+random data. Fortunately, most of this is handled by the PyCrypto library's
+<code>Crypto.Random.OSRNG module</code>. You should know that the more entropy sources
+available (such as network traffic and disk activity), the faster the system
+can generate cryptographically-secure random data. I've written a function that 
+can generate a <em>cryptographic nonce</em> (an number used only once)
+suitable for use as an initialisation vector. This will work on a UNIX machine; 
+the comments note how easy it is to adapt it to a Windows machine. This 
+function requires a version of PyCrypto at least 2.1.0 or higher.</p>
+
+<pre><code>import time
+import Crypto.Random.OSRNG.posix
+
+def generate_nonce():
+rnd = Crypto.Random.OSRNG.posix.new().read(BLOCK_SIZE)
+rnd = '%s%s' % (rnd, str(time.time()))
+nonce = Crypto.Hash.MD5.new(data = rnd)
+
+return nonce.digest()
+</code></pre>
+
+<p>I will note here that the python <code>random</code> module is completely unsuitable for
+cryptography (as it is completely deterministic). You shouldn't use it for
+cryptographic code. If you're using another language, you need to be careful
+to select a cryptographically-secure random number generator (RNG).</p>
+
+<p>Symmetric ciphers are so-named because the key is shared across any entities.
+There are three key sizes for AES: 128-bit, 192-bit, and 256-bit, aka 16-byte,
+24-byte, and 32-byte key sizes. If you want to use a passphrase, you 
+should use a digest algorithm that produces an appropriately sized digest, and
+hash that passphrase. For example, for AES-256, you would want to use SHA-256.
+Here is a sample function to generate an AES-256 key from a passphrase:</p>
+
+<pre><code># generate an AES-256 key from a passphrase
+def passphrase(password, readable = False):
+"""
+Converts a passphrase to a format suitable for use as an AES key.
+
+If readable is set to True, the key is output as a hex digest. This is
+suitable for sharing with users or printing to screen when debugging
+code.
+
+By default readable is set to False, in which case the value it 
+returns is suitable for use directly as an AES-256 key.
+"""
+key     = Crypto.Hash.SHA256.new(password)
+
+if readable:
+    return key.hexdigest()
+else:
+    return key.digest()
+</code></pre>
+
+<p>We could include this a set of AES encryption and decryption functions:</p>
+
+<pre><code>mode = Crypto.Cipher.AES.MODE_CBC       # shortcut to clean up code
+
+# AES-256 encryption using a passphrase
+def passphrase_encrypt(password, iv, data):
+    key     = passphrase(password)
+data    = pad_data(data)
+aes     = Crypto.Cipher.AES.new(key, mode, iv)
+
+return aes.encrypt(data)
+
+# AES-256 decryption using a passphrase
+def passphrase_decrypt(password, iv, data):
+    key     = passphrase(password)
+aes     = Crypto.Cipher.AES.new(key, mode, iv)
+data    = aes.decrypt(data)
+
+return unpad_data(data)
+</code></pre>
+
+<p>Notice how the data is padded before being encrypted and unpadded after 
+decryption - the decryption process will not remove the padding on its own.</p>
+
+<p>Unless you are you doing interactive encryption passphrase encryption won't be
+terribly useful. Instead, we just need to generate 32 random bytes (and make
+sure we keep track of it) and use that as the key:</p>
+
+<p># generate a random AES-256 key
+def generate_aes_key():
+    rnd     = Crypto.Random.OSRNG.posix.new().read(KEY_SIZE)
+    return rnd</p>
+
+<p>We can use this key directly in the AES transformations:</p>
+
+<pre><code>def encrypt(key, iv, data):
+    aes     = Crypto.Cipher.AES.new(key, mode, iv)
+data    = pad_data(data)
+
+return aes.encrypt(data)
+
+def decrypt(key, iv, data):
+    aes     = Crypto.Cipher.AES.new(key, mode, iv)
+data    = aes.decrypt(data)
+
+return unpad_data(data)
+</code></pre>
+
+<p>That should cover the basics of block cipher encryption. We've gone over key
+generation, padding, and encryption / decryption. AES-256 isn't the only 
+block cipher provided by the PyCrypto package, but again: it is the standard
+and well vetted.</p>
+
+<h2 id="ascii-armouring">2.3 ASCII-Armouring</h2>
+
+<p>I'm going to take a quick detour and talk about ASCII armouring. If you've 
+played with the crypto functions above, you'll notice they produce an annoying
+dump of binary data that can be a hassle to deal with. One common technique for
+making the data a little bit easier to deal with is to encode it with 
+base64 (which is defined in <a href="http://tools.ietf.org/html/rfc1521.html">RFC 1521</a>. 
+There are a few ways to incorporate this into python:</p>
+
+<h3 id="absolute-base64-encoding">2.3.1 Absolute Base64 Encoding</h3>
+
+<p>The easiest way is to just base64 encode everything in the encrypt function. 
+Everything that goes into the decrypt function should be in base64 - if it's 
+not, the <code>base64</code> module will throw an error: you could catch this and 
+then try to decode it as binary data.</p>
+
+<h3 id="a-simple-header">2.3.2 A Simple Header</h3>
+
+<p>A slightly more complex option, and the one I adopt in this article, is to use 
+a <code>x00</code> as the first byte of the ciphertext for binary data, and to use 
+<code>\x41</code> (an ASCII "<code>A</code>'') for ASCII encoded data. This will increase 
+the complexity of the encryption and decryption functions slightly. We'll also 
+pack the initialisation vector at the beginning of the file as well. Given now 
+that the <code>iv</code> argument might be <code>None</code> in the decrypt function, I 
+will have to rearrange the arguments a bit; for consistency, I will move it in 
+both functions. I leave adding it into the <code>passphrase_encrypt</code> and 
+<code>passphrase_decrypt</code> functions as an exercise for the reader. My modified 
+functions look like this now:</p>
+
+<pre><code>def encrypt(key, data, iv, armour = False):
+    aes     = Crypto.Cipher.AES.new(key, mode, iv)
+    data    = pad_data(data)
+    ct      = aes.encrypt(data)         # ciphertext
+    ct      = iv + ct                   # pack the initialisation vector in
+
+    # ascii-armouring
+    if armour:
+        ct = '\x41' + base64.encodestring(ct)
+    else:
+        ct = '\x00' + ct
+
+    return ct
+
+def decrypt(key, data, iv = None):
+    # remove ascii-armouring if present
+    if data[0] == '\x00':
+        data = data[1:]
+    elif data[0] == '\x41':
+        data = base64.decodestring(data[1:])
+
+    iv      = data[:16]
+    data    = data[16:]
+    aes     = Crypto.Cipher.AES.new(key, mode, iv)
+    data    = aes.decrypt(data)
+    return unpad_data(data)
+</code></pre>
+
+<h3 id="a-more-complex-container">2.3.3 A More Complex Container</h3>
+
+<p>There are more complex ways to do it (and you'll see it with the public keys 
+in the next section) that involve putting the base64 into a container of sorts
+that contains additional information about the key.</p>
+
+<h2 id="public-key-cryptography">2.4 Public Key Cryptography</h2>
+
+<p>Now it is time to take a look at public-key cryptography. Public-key 
+cryptography, or PKC, involves the use of two-part keys. The private key is
+the sensitive key that should be kept private by the owning entity, whereas the
+public key (which is generated from the private key) is meant to be distributed
+to any entities which must communicate securely with the entity owning the 
+private key. Confusing? Let's look at this using the venerable Alice and Bob,
+patron saints of cryptography.</p>
+
+<p>Alice wants to talk to Bob, but doesn't want Eve to know the contents of the
+message. Both Alice and Bob generate a set of private keys. From those private
+keys, they both generate public keys. Let's say they post their public keys on
+their websites. Alice wants to send a private message to Bob, so she looks up
+Bob's public key from his site. (In fact, there is a way to distribute keys via
+a central site or entity; this is called a public key infrastructure (PKI). The 
+public key can be used as the key to encrypt a message with PKC. The resulting 
+ciphertext can only be decrypted using Bob's private key. Alice sends Bob the 
+resulting ciphertext, which Eve cannot decrypt without Bob's private key. 
+Hopefully this is a little less confusing.</p>
+
+<p>One of the most common PKC systems is RSA (which is an acronym for the last 
+names of the designers of the algorithm). Generally, RSA keys are 1024-bit,
+2048-bit, or 4096-bits long. The keys are most often in 
+PEM (defined in <a href="https://tools.ietf.org/html/rfc1421">RFCs 1421-1424</a>)
+or 
+<a href="http://www.itu.int/ITU-T/studygroups/com17/languages/X.690-0207.pdf">DER</a>
+format. Generating RSA keys with PyCrypto is extremely easy:</p>
+
+<pre><code>def generate_key(size):
+    PRNG    = Crypto.Random.OSRNG.posix.new().read
+    key     = Crypto.PublicKey.RSA.generate(size, PRNG)
+
+    return key
+</code></pre>
+
+<p>The <code>key</code> that is returned isn't like the keys we used with the block ciphers:
+it is an RSA object and comes with several useful built-in methods. One of 
+these is the <code>size()</code> method, which returns the size of the key in bits minus
+one. For example:</p>
+
+<pre><code>&gt;&gt;&gt; import publickey
+&gt;&gt;&gt; key = publickey.generate_key( 1024 )
+&gt;&gt;&gt; key.size()
+1023
+&gt;&gt;&gt;
+</code></pre>
+
+<p>A quick note: I will use 1024-bit keys in this tutorial because they are 
+faster to generate, but in practice you should be using at least 2048-bit 
+keys. The key also includes encryption and decryption methods in the class:</p>
+
+<pre><code>&gt;&gt;&gt; import publickey
+&gt;&gt;&gt; import base64
+&gt;&gt;&gt; message = 'Test message...'
+&gt;&gt;&gt; ciphertext = key.encrypt(message, None)
+&gt;&gt;&gt; print base64.encodestring(ciphertext[0])
+gzA9gXfHqnkValdhhYjRVVSxuygx48i66h0vFUnmVu8FZXJtmaACvNDo43D0vjjHzFibl
+E1eCFiIxlhVuHxldWXJSnARgWX1bTY7imR9Hve+WQC8rl+qB5xpq3xnKH7/z8/5YdLvCo
+/knXYE1cI/XYJPEP1nA6bUZNj6bD1Zx4w=
+</code></pre>
+
+<p>The <code>None</code> that is passed into the encryption function is part of the 
+PyCrypto API for those publickey ciphers requiring an additional random number 
+function to be passed in. It returns a tuple containing only the encrypted 
+message. In order to pass this to the decryption function, we need to pass only 
+the encrypted message as a string:</p>
+
+<pre><code>&gt;&gt;&gt; ciphertext = key.encrypt(message, None)[0]
+&gt;&gt;&gt; key.decrypt(ciphertext)
+'Test message...'
+</code></pre>
+
+<p>While these are simple enough, we could put them into a pair of functions that
+also include ASCII-armouring:</p>
+
+<pre><code>def encrypt(key, message, armour = True):
+    ciphertext  = key.encrypt( message, None )
+    ciphertext  = ciphertext[0]
+
+    if armour:
+        ciphertext = '\x41' + base64.encodestring( ciphertext )
+    else:
+        ciphertext = '\x00' + base64.encodestring( ciphertext )
+
+    return ciphertext
+
+def decrypt(key, message):
+    if   '\x00' == message[0]:
+        message = message[1:]
+    elif '\x41' == message[0]:
+        message == base64.decodestring( message[1:] )
+
+    plaintext   = key.decrypt( message )
+    return plaintext
+</code></pre>
+
+<p>These two functions present a common API that will simplify encryption and
+decryption and make it a little easier to read. Assuming we still have the same
+<code>message</code> definition as before:</p>
+
+<pre><code>&gt;&gt;&gt; ciphertext = publickey.encrypt(key, message)
+&gt;&gt;&gt; publickey.decrypt(key, ciphertext)
+'Test message...'
+</code></pre>
+
+<p>Now, what if we want to export this generated key and read it in later? The key
+comes with the method <code>exportKey()</code>. If the key is a private key, it will
+export the private key; if it is a public key, it will export the public key.
+We can write functions to backup our private key (which <strong>absolutely</strong>
+needs to be kept secure) and a function to export our public key, suitable for
+uploading to our web page or to a PKI keystore:</p>
+
+<pre><code># backup our key, whether public or private
+def export_key(filename, key):
+    try:
+    f = open(filename, 'w')
+except IOError as e:
+    print e
+    raise e
+else:
+    f.write( key.exportKey() )
+    f.close()
+
+# will only export the public key
+def export_pubkey(filename, key):
+    try:
+        f = open(filename, 'w')
+    except IOError as e:
+        print e
+        raise e
+    else:
+        f.write( key.publickey().exportKey() )
+        f.close()
+</code></pre>
+
+<p>Importing a key is done using the <code>RSA.importKey</code> function:</p>
+
+<pre><code>def load_key(filename):
+    try:
+        f = open(filename)
+    except IOError as e:
+        print e
+        raise
+    else:
+        key = Crypto.PublicKey.RSA.importKey(f.read())
+        f.close()
+        return key
+</code></pre>
+
+<p>We can take a look at the difference between the public and private keys:</p>
+
+<pre><code>&gt;&gt;&gt; key = publickey.generate_key( 1024 )
+&gt;&gt;&gt; print key.exportKey()
+-----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQCpVA2pqLuS1fmutvx/lBhlk+UMXWcZKVzh+n5D6Hv/ZWhlzRuC
+q408uhVBUD32ylbQ2iFdhA1leq0xWRGQ8Y3LlO6tQZ0gC2oOHetX3YOghO3q4yMe
+wvuU+Wb6bS1aRDc9YV3IMPjQW47MOROUldjMEdJJhfxko5YZuaghhpd56wIDAQAB
+AoGAaRznellnT2iLHX00U1IwruXXOwzEUmdN5G4mcathRhLCcueXW095VqhBR5Ez
+Vf8XU4EFU1MFKei0mLys3ehFV4aoTfU1xm91jXNZrM/rIjHQQObx2fcDSgrM9iyd
+kcgGrz5nDvsyxAxOwxCh96vNxZZYTWa8Zcqng1XYeW93nFkCQQC8Rqwn9Sa1UjBB
+mIepkcdYfflkzmD7IBcgiTmGFQ9NXiehY6MQd0UJoFYGBEknPazzWQbNVpkZO4TR
+oPuKNjSNAkEA5jyWJhKyq2BVD6UP77vYTJu48OhLx4J7qb3DKHnk5syOBnbke2Df
+KV1VjRsipSjb4EXAWhWaqnTfPPDbvyWWVwJAWUgSP2iLkJSG+bRBMPJGW/pxF5Ke
+fre6/9zTAHhgJ0os9OVw4FAO1v/Hi1bg8dDXgRaImTsloseMtnPmlKYbyQJAbmbr
+EQKyTl95KnFaPPj0dXfOrSaW/+pf5jsqlAQvcUTxbcQhN9Bx8mHhHjK+4DfBh7+q
+xwfJDKfSTGSq2vPpLQJBAL5irIeHoFESPZZI1NW7OkpKPcO/2ps9NkhgZJQ7Pc11
+lWh6Ch2cnBzZmeh6lN/zC4l3mLVhdZSXkEKOzeuFpBs=
+-----END RSA PRIVATE KEY-----
+&gt;&gt;&gt; pk = key.publickey()
+&gt;&gt;&gt; print pk.exportKey()
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpVA2pqLuS1fmutvx/lBhlk+UM
+XWcZKVzh+n5D6Hv/ZWhlzRuCq408uhVBUD32ylbQ2iFdhA1leq0xWRGQ8Y3LlO6t
+QZ0gC2oOHetX3YOghO3q4yMewvuU+Wb6bS1aRDc9YV3IMPjQW47MOROUldjMEdJJ
+hfxko5YZuaghhpd56wIDAQAB
+-----END PUBLIC KEY-----
+</code></pre>
+
+<p>Using the <code>export_pubkey()</code> function, you can pass that file
+around to people to encrypt messages to you. Often, you wil want to generate a 
+keypair to give to people. One convention is to name the secret key 
+<code>keyname.prv</code> (prv for private, and sometimes <code>keyname.key</code>) and the 
+public key <code>keyname.pub</code>. We will
+follow that convention in an <code>export_keypair()</code> function:</p>
+
+<pre><code>def export_keypair(basename, key):
+    pubkeyfile   = basename + '.pub'
+    prvkeyfile   = basename + '.prv'
+
+    export_key(prvkeyfile, key)
+    export_pubkey(pubkeyfile, key)
+</code></pre>
+
+<p>For example, Bob generates a keypair and emails the public key to Alice:</p>
+
+<pre><code>&gt;&gt;&gt; key = publickey.generate_key( 1024 )
+&gt;&gt;&gt; key.size()
+1023
+&gt;&gt;&gt; key.has_private()
+True
+&gt;&gt;&gt; publickey.export_keypair('bob.prv', key)
+&gt;&gt;&gt; 
+</code></pre>
+
+<p>Then, Assuming Bob gave Alice <code>bob.pub</code>:</p>
+
+<pre><code>&gt;&gt;&gt; bob = publickey.load_key('./bob.pub')
+&gt;&gt;&gt; message = 'secret message from Alice to Bob'
+&gt;&gt;&gt; print publickey.encrypt(bob, message)
+AN6RsuXEeKicUZKtZCsDeqGKeB5em+NG/bgoqr9l8ij2o1Gr9sT69tv0zxgmigK/
+Jt+gPxg/EDu61nHmAK0XQV7BvJS5jLuBxdJ0mEpysVClu46XN1KHU2l2DsGht9e8
+OFvhEfDkI5t/cy/gXr0xz/EUirqo8qLd9Mw6TerM8gs8=
+</code></pre>
+
+<p>The ASCII-armoured format makes it convenient for Alice to paste the encrypted
+message to Bob, so she does, and now Bob has it on his computer. To read it, he
+does something similar:</p>
+
+<pre><code>&gt;&gt;&gt; bob = publickey.load_key('tests/bob.prv')
+&gt;&gt;&gt; print publickey.decrypt(bob, message)
+secret message from Alice to Bob
+</code></pre>
+
+<p>At this point, Bob can't be sure that the message came from Alice but he can 
+read the message. We'll cover entity authentication in a later section, but
+first, there's something else I'd to point out:</p>
+
+<p>You might have noticed at this point that public key cryptography appears to
+be a lot simpler than symmetric key cryptography. The key distribution problem
+is certainly easier, especially with a proper PKI. Why would anyone choose to
+use symmetric key cryptography over public key cryptography? The answer is
+performance: if you compare the block cipher test code with the public
+key test code, you will notice that the block cipher code is orders of magnitude
+faster - and it generates far more keys than the public key code. There is a 
+solution to this problem: hybrid cryptosystems.</p>
+
+<p>Hybrid cryptosystems use public key cryptography to establish a symmetric 
+session key. Both <strong>TLS</strong> (Transport Layer Security), and its predecessor 
+<strong>SSL</strong> (Secure Sockets Layer), most often used to secure HTTP transactions, 
+use a hybrid cryptosystem to speed up establishing a secure session. PGP 
+also uses hybrid crypto.</p>
+
+<p>Let's say Alice and Bob wish to use hybrid crypto; if Alice initiates the 
+session, she should be the one to generate the session key. For example,</p>
+
+<pre><code>&gt;&gt;&gt; import block, publickey
+&gt;&gt;&gt; session_key = block.generate_aes_key()
+&gt;&gt;&gt; alice_key   = publickey.load_key('keys/alice.prv')
+&gt;&gt;&gt; bob_key     = publickey.load_key('keys/bob.pub')
+&gt;&gt;&gt; encrypted_session_key = encrypt( bob_key, session_key )
+</code></pre>
+
+<p>At this point, Alice should send Bob the <code>encrypted_session_key</code>; she 
+should retain a copy as well. They can then use this key to communicate using
+the much-faster AES256.</p>
+
+<p>In communicating, it might be wise to create a message format that packs in 
+the session key into a header, and encrypts the rest of the body with the
+session key. This is a subject beyond the realm of a quick tutorial - again,
+consult with the people who do this on a regular basis.</p>
+
+<h2 id="digital-signatures">2.5 Digital Signatures</h2>
+
+<p>In all of the previous examples, we assumed that the identity of the sender
+wasn't a question. For a symmetric key, that's less of a stretch - there's no 
+differentiation between owners. Public keys, however, are supposed to be
+associated with an entity. How can we prove the identity of the user? Without
+delving into too much into social sciences and trust metrics and a huge
+philosophical argument, let's look at the basics of signatures.</p>
+
+<p>A signature works similarly to encryption, but it in reverse, and it is slightly
+different: a hash of the message is 'encrypted' by the private key to the 
+public key. The public key is used to 'decrypt' this ciphertext. Contrast this 
+to actual public key encryption: the entire message is encrypted to the private 
+key by the public key, and the private key is used to decrypt the ciphertext. 
+With signatures, the 'encrypted' hash of the message is called the signature,
+and the act of 'encryption' is termed 'signing'. Similarly, the 'decryption' 
+is known as verification or verifying the signature.</p>
+
+<p>PyCrypto's PublicKey implementations already come with signatures and 
+verification methods for keys using <code>sign()</code> and <code>verify()</code>. The signature
+is a long in a tuple:</p>
+
+<pre><code>&gt;&gt;&gt; key.sign( d, None )
+(173842351815267154566957144586003794451816219765633312346624801
+5147955424248876723731383711018550231967374810686606623315483033
+4856309770145743593461929279426238074617831446286567962255044781
+9645805178924131103302091176730122065314827600405513575263836270
+59382081878791040169815009051016949220178044764130908L,)
+</code></pre>
+
+<p>We can write our own functions to wrap around these two functions and perform 
+ASCII-armouring if desired. Our signature function should take a key and a 
+message (and optionally a flag to ASCII armour the signature), and sign a 
+digest of the message:</p>
+
+<pre><code>def sign(key, message, armour = True):
+    if not key.can_sign(): 
+        return None
+
+    digest      = Crypto.Hash.SHA256.new(message).digest()
+    signature   = key.sign( digest, None )[0]
+
+    if armour:
+        sig     = base64.encodestring( str(signature) )
+    else:
+        sig     = str( signature )
+
+    return sig.strip()
+</code></pre>
+
+<p>The signature is converted to a string to make it easier to pack it into 
+structures and also to give us consistent input to the verify() function.</p>
+
+<p>Verifying the signature requires that we determine if the signature is ASCII-
+armoured or not, then comparing a digest of the message to the signature:</p>
+
+<pre><code>def verify(key, message, signature):
+    try:
+        sig     = long( signature )
+    except ValueError as e:
+        sig     = long( base64.decodestring( signature.rstrip('\n') ), )
+
+        digest      = Crypto.Hash.SHA256.new(message).digest()
+    return key.verify( digest, (sig, ) )
+</code></pre>
+
+<p>The <code>sign()</code> function returns a signature and the <code>verify()</code> function returns a 
+boolean. Now, Alice can sign her message to Bob, and Bob knows the key belongs
+to Alice. She sends Bob the signature and the encrypted message. Bob then makes
+sure Alice's key properly verifies the signature to the encrypted message.</p>
+
+<h2 id="key-exchange">2.6 Key Exchange</h2>
+
+<p>So how does Bob know the key actually belongs to Alice? There are two main
+schools of thought regarding the authentication of key ownership: centralised
+and decentralised. TLS/SSL follow the centralised school: a root 
+certificate (a certificate is a public key encoded with X.509 and which
+can have additional informational attributes attached, such as organisation
+name and country) authority (CA) signs intermediary CA keys, which then sign
+user keys. For example, if Bob runs Foo Widgets, LLC, he can generate an SSL
+keypair. From this, he generates a certificate signing request, and sends this
+to the CA. The CA, usually after taking some money and ostensibly actually
+verifying Bob's identity (the extent to which this actually happens 
+varies widely based on the different CAs), then signs Bob's certificate. Bob
+sets up his webserver to use his SSL certificate for all secure traffic, and
+Alice sees that the CA did in fact sign his certificate. This relies on trusted
+central authorities, like VeriSign (there is some question as to whether
+VeriSign can actually be trusted, but that is another discussion for another
+day...) Alice's web browser would ship with a keystore of select trusted CA
+public keys (like VeriSign's) that she could use to verify signatures on the
+certificates from various sites. This system is called a public key 
+infrastructure.</p>
+
+<p>The other school of thought is followed by PGP (and GnuPG) - the 
+decentralised model. In PGP, this is manifested as the 
+<a href="http://www.rubin.ch/pgp/weboftrust.en.html">Web of Trust</a>. 
+For example, if Carol now wants to talk to Bob and gives Bob her public key,
+Bob can check to see if Carol's key has been signed by anyone else. We'll also
+say that Bob knows for a fact that Alice's key belongs to Alice, and he trusts
+her&mdash;it is quite often important to distinguish between 
+<em>I know this key belongs to that user</em> and <em>I trust that user</em>, which
+is especially important with key signatures - if Bob cannot trust
+Alice to properly check identities, she might sign a key for an identity she 
+hasn't checked&mdash;and that Alice has signed Carol's key. Bob sees Alice's 
+signature on Carol's key and then can be reasonably sure that Carol is who she 
+says it was. If we repeat the process with Dave, whose key was signed by Carol 
+(whose key was signed by Alice), Bob might be able to be more certain that the 
+key belongs to Dave, but maybe he doesn't really trust Carol to properly verify 
+identities. In PGP, Bob can mark keys as having various trust levels, and from 
+this a web of trust emerges: a picture of how well you can trust that a given 
+key belongs to a given user.</p>
+
+<p>The key distribution problem is not a quick and easy problem to solve; a lot of
+very smart people have spent a lot of time coming up with solutions to the
+problem. There are key exchange protocols (such as the 
+<a href="http://is.gd/Tr0zLP">Diffie-Hellman key exchange</a>
+and IKE (Internet Key Exchange, defined in <a href="http://www.ietf.org/rfc/rfc2409.txt">RFC 2409</a>
+(which uses Diffie-Hellman) that provide alternatives to the web of trust and
+public key infrastructures.</p>
+
+
+</div>
+    <div class="page:chapter new-page">
+
+<h1 id="practical-threat-modeling"><span>Chapter 3 </span> Practical Threat Modeling</h1>
+
+<p><strong>Threat modeling</strong> is the art of thinking about what threats your
+application will face. By understanding the threats, you can begin thinking
+about how to mitigate them.</p>
+
+<p>One useful tool when threat modeling is an <strong>attack tree</strong>. In an attack tree,
+you identify what threats you might face, and what those attacks lead to. During
+the initial stages, you don't focus on mitigation (or what you have done so far).
+It's important to consider what sorts of attacks can be made: while you might
+think an attack is mitigated or you may not see it as practical, changes to the
+code can easily change the situation. It's important to regularly review the
+attack tree, updating it as necessary. If you add a feature, consider the 
+potential security impact. The point of the attack tree is just to visualise 
+what could happen; later parts of the security engineering process transform
+this into a practical outlook.</p>
+
+<p>Let's consider a simple web site that allows users to update their information;
+it's backed by a fairly simple database. Some potential attack vectors that 
+come to mind in a quick overview are:</p>
+
+<ol>
+<li>SQL injection on the login form -> privilege escalation</li>
+<li>password interception on the wire -> stealing user's account information</li>
+<li>password brute forcing -> stealing user's account information</li>
+<li>unauthorised access to resources, i.e. user B can read or update user A's
+information without their consent.</li>
+</ol>
+
+<p>It's also helpful to identify vulnerability points with these:</p>
+
+<ol>
+<li>login form (SQL injection, password brute forcing)</li>
+<li>the wire, i.e. the connection between the user and the server (password
+interception)</li>
+<li>whereever user information can be looked up</li>
+</ol>
+
+<p>From here, we can identify mitigation steps fairly easily:</p>
+
+<ol>
+<li>Sanitize all user inputs.</li>
+<li>Secure the connection using SSL.</li>
+<li>Use <a href="https://en.wikipedia.org/wiki/Bcrypt">bcrypt</a> to store passwords.</li>
+<li>Force all sensitive information to be routed through authorisation 
+middleware.</li>
+</ol>
+
+<p>Generally, it's good practise to keep these in separate documents; i.e. an
+attack tree (though often annotated with the vulnerability points), and
+a security plan. This allows you to consider the two separately when needed.
+The security plan should reference the attack tree in considering what 
+attacks are being defended against. These are also living documents; as
+mentioned before, they will need to be reviewed and updated regularly.</p>
+
+<h2 id="identifying-attack-vectors">3.1 Identifying Attack Vectors</h2>
+
+<p>A good place to check for attack vectors is to consider the generic attack
+points:</p>
+
+<ol>
+<li>Where does data enter the system? Unsanitised data can pose a risk, as can
+data that is not normalised to expected values.</li>
+<li>Where does data leave the system? <strong>Information leakage</strong> is a security
+issue where information that should not leave the system does, or is revealed
+by the system unintentionally (typically without effort on the part of the
+attacker).</li>
+<li>What sensitive data does the system use? Passwords an obvious answer that
+come to find first; also, consider email addresses and other personal details.
+Resources that should not be widely accessible to the public fall under this
+category as well; for example, if you are publishing a paid magazine online,
+you want to consider restricting access to it.</li>
+<li>Where and how is sensitive information stored? For example, when passwords
+aren't being used, how are they being stored? Are you using bcrypt or are they
+being stored in plaintext?</li>
+</ol>
+
+<p>This can be a difficult task. You have to be creative, and you will likely still 
+not consider everything an attacker will. Having several people involved in 
+developing the attack tree is very useful, as they will all have different
+mindsets and backgrounds to contribute. One technique I find useful is to
+visualise your program as a system, diagramming subsystems and information flow.
+Just as physical security engineers will study the physical layout of the area
+they are working to protect and bank robbers will often observe their target
+beforehand, it is another tool useful for visualising where security systems
+fit into the overall architecture.</p>
+
+<h2 id="example">3.2 Example</h2>
+
+<p>Let's consider an example: I have a website that provides a front end for my
+small team's ebook library. Here is the systems diagram I have for the site:</p>
+
+<p><img src="images/dystopia_system_diagram.png" alt="systems diagram" /></p>
+
+<p>And here is a sample attack tree I've come up with:</p>
+
+<p><img src="images/dystopia_attack_tree.png" alt="attack tree" /></p>
+
+<p>What are the attack vectors? If we organise them by the four generic attack 
+points, we could come up with:</p>
+
+<ol>
+<li>Where does data enter the system?
+
+<ul>
+<li>login form</li>
+<li>user book uploads</li>
+<li>user metadata fields</li>
+<li>book cover images</li>
+<li>user bio</li>
+</ul></li>
+<li>Where does data leave the system?
+
+<ul>
+<li>book download</li>
+<li>user bio display</li>
+<li>displaying catalog information</li>
+<li>book cover display</li>
+</ul></li>
+<li>What sensitive data is present in the system?
+
+<ul>
+<li>passwords</li>
+<li>user catalog</li>
+</ul></li>
+<li>Where and how is sensitive information stored?
+
+<ul>
+<li>passwords: stored in the database as bcrypted hashes</li>
+<li>user catalog: stored in the database and accessed through an access control list (ACL)</li>
+</ul></li>
+</ol>
+
+
+</div>
+    <div class="page:appendix new-page">
+
+<h1 id="bibliography"><span>Appendix A </span> Bibliography</h1>
+
+<p><em>Paul Kocher, Joshua Jaffe, and Benjamin Jun.</em> "Introduction to Differential
+Power Analysis and Related Attacks." Cryptography Research, San Francisco, CA
+1998. http://www.cryptography.com/resources/whitepapers/DPATechInfo.pdf</p>
+
+<p><em>Paul Kocher, Joshua Jaffe, and Benjamin Jun.</em> "Differential Power Analysis."
+Cryptography Research, San Francisco, CA 2000.
+http://www.cryptography.com/resources/whitepapers/DPA.pdf</p>
+
+
+</div>
+
+</div></body>
+</html>
