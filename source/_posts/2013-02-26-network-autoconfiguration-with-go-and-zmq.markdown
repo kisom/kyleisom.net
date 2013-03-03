@@ -69,7 +69,8 @@ of this function.
 ```go
 // IPv4MulticastPeerAddress returns a ØMQ multicast peer address for
 // the given port and interface.
-func IPv4MulticastPeerAddress(ifName string, port uint16) (addr string, err error) {
+func IPv4MulticastPeerAddress(ifName string, port uint16) (addr string,
+                                                           err error) {
         iface, err := net.InterfaceByName(ifName)
         if err != nil {
                 return
@@ -212,7 +213,8 @@ func advertise() {
         log.Println("starting multicast advertiser")
         msock, err := ØMQContext.NewSocket(zmq.PUB)
         if err != nil {
-                log.Println("failure setting up multicast socket:", err.Error())
+                log.Println("failure setting up multicast socket:",
+                        err.Error())
                 ØMQFailure <- err
                 return
         }
@@ -220,14 +222,16 @@ func advertise() {
 
         err = msock.Bind(MulticastAddr)
         if err != nil {
-                log.Println("failure binding multicast socket:", err.Error())
+                log.Println("failure binding multicast socket:",
+                        err.Error())
                 ØMQFailure <- err
                 return
         }
 
         ab, err := Ad.Encode()
         if err != nil {
-                log.Println("failure encoding advertisement:", err.Error())
+                log.Println("failure encoding advertisement:",
+                        err.Error())
                 ØMQFailure <- err
                 return
         }
@@ -237,7 +241,8 @@ func advertise() {
                 log.Println("sending advertisement")
                 err = msock.Send(ab, 0)
                 if err != nil {
-                        log.Println("error sending advertisement:", err.Error())
+                        log.Println("error sending advertisement:",
+                                err.Error())
                 }
                 <-time.After(15 * time.Second)
         }
@@ -260,7 +265,8 @@ func listen() {
         log.Println("starting request listener")
         sock, err := ØMQContext.NewSocket(zmq.REP)
         if err != nil {
-                log.Println("failure setting up listener socket:", err.Error())
+                log.Println("failure setting up listener socket:",
+                        err.Error())
                 ØMQFailure <- err
                 return
         }
@@ -268,7 +274,8 @@ func listen() {
 
         err = sock.Bind(Ad.PeerAddress())
         if err != nil {
-                log.Println("failure binding listener socket:", err.Error())
+                log.Println("failure binding listener socket:",
+                        err.Error())
                 ØMQFailure <- err
                 return
         }
@@ -277,12 +284,14 @@ func listen() {
         for {
                 msg, err := sock.Recv(512)
                 if err != nil {
-                        log.Println("failure receiving request:", err.Error())
+                        log.Println("failure receiving request:",
+                                err.Error())
                 } else {
                         log.Println("received message:", string(msg))
                         err = sock.Send([]byte("OK"), 0)
                         if err != nil {
-                                log.Println("failure sending reply:", err.Error())
+                                log.Println("failure sending reply:",
+                                        err.Error())
                         }
                 }
         }
@@ -312,7 +321,8 @@ func search() (ad *common.Advertisement) {
         clientPrint(false, "searching for server advertisements")
         msock, err := ØMQContext.NewSocket(zmq.SUB)
         if err != nil {
-                clientPrint(true, "failure setting up multicast socket:", err.Error())
+                clientPrint(true, "failure setting up multicast socket:",
+                        err.Error())
                 return
         }
         defer msock.Close()
@@ -320,17 +330,20 @@ func search() (ad *common.Advertisement) {
 
         err = msock.Connect(MulticastAddr)
         if err != nil {
-                clientPrint(true, "failure connecting multicast socket:", err.Error())
+                clientPrint(true, "failure connecting multicast socket:",
+                        err.Error())
                 return
         }
 
         msg, err := msock.Recv(512)
         if err != nil {
-                clientPrint(true, "error receiving advertisement:", err.Error())
+                clientPrint(true, "error receiving advertisement:",
+                        err.Error())
         }
         a, err := common.DecodeAdvertisement(msg)
         if err != nil {
-                clientPrint(true, "failure decoding advertisement:", err.Error())
+                clientPrint(true, "failure decoding advertisement:",
+                        err.Error())
                 return nil
         }
         clientPrint(false, "found advertisement")
@@ -345,14 +358,16 @@ func hello(ad *common.Advertisement) {
         clientPrint(false, "connecting to server")
         sock, err := ØMQContext.NewSocket(zmq.REQ)
         if err != nil {
-                clientPrint(true, "failure setting up request socket:", err.Error())
+                clientPrint(true, "failure setting up request socket:",
+                        err.Error())
                 os.Exit(1)
         }
         defer sock.Close()
 
         err = sock.Connect(ad.PeerAddress())
         if err != nil {
-                clientPrint(true, "failure binding listener socket:", err.Error())
+                clientPrint(true, "failure binding listener socket:",
+                        err.Error())
                 os.Exit(1)
         }
 
@@ -369,7 +384,8 @@ func hello(ad *common.Advertisement) {
                         err.Error())
                 os.Exit(1)
         } else if string(msg) != "OK" {
-                clientPrint(true, "didn't receive expected response from server")
+                clientPrint(true,
+                        "didn't receive expected response from server")
                 fmt.Printf("\t[*] received '%s'\n", string(msg))
         }
 }
@@ -377,9 +393,9 @@ func hello(ad *common.Advertisement) {
 
 ### Running the Code
 
-With this system, it doesn't matter whether the server or clients are started first;
-the server will continue to broadcast its address and wait for clients, and clients
-wait until they have found a server.
+With this system, it doesn't matter whether the server or clients are
+started first; the server will continue to broadcast its address and
+wait for clients, and clients wait until they have found a server.
 
 Here's an example session:
 
