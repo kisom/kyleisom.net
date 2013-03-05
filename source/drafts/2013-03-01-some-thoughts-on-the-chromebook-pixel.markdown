@@ -28,3 +28,7 @@ Its specs square it up as a competitor to the Macbook Air and the Lenovo
 x230. These specs aren't required for ChromeOS's primary goal, which is to
 run everything in the cloud, so the specs are a bit unusual for the line.
 
+* 3:2 display
+* disk size
+* battery life?
+* keyboard
