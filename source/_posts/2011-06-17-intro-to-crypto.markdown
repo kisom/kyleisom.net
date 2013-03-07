@@ -15,6 +15,8 @@ awkward; one day I'll clean them up, I promise.
 
 I've put up a [PDF version](/downloads/crypto_intro.pdf) here, and updates 
 are posted at the [github repo](https://github.com/kisom/crypto_intro).
+There's also a version up on [Leanpub](https://leanpub.com/pycrypto/), where
+it's published in MOBI, EPUB, and PDF. I'm only asking $1 USD for it.
 
 If you see any LaTeX artifacts (or other errors) lurking, feel free to
 let me know!
