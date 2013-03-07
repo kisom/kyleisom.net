@@ -1,3 +1,6 @@
+name: kyleisom.net
+description: Yet Another Programming Blog
+url: http://kyleisom.net
 markdown: redcarpet2
 lsi: true
 source: source
