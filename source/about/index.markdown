@@ -18,6 +18,10 @@ use C and python. On the side, I am a huge fan of Go.
 * [My Setup](/uses/)
 * [Colophon](/colophon/)
 
+### Published
+
+* [A Working Introduction to Cryptography: Illustrated with Python](https://leanpub.com/pycrypto): 20p. This is a testbed for evaluating Leanpub to publish a much
+longer introduction using [Go](http://golang.org).
 
 ### Contact
 
