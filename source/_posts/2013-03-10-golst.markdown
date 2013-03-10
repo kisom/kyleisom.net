@@ -1,0 +1,41 @@
+---
+layout: post
+title: "golst: readable Golang source listings"
+date: 2013-03-10 15:53
+comments: true
+categories: [golang, development]
+keywords: [golang, literate programming, publishing]
+tags: [golang, literate programming, publishing]
+---
+
+While working on the book I'm currently writing, I wanted to print out
+some source listings to take notes on; often times when writing, I prefer
+to remove myself from the computer and go analogue with pad and paper. As
+part of the writing process, I wanted to be able to refer to the source
+code examples for the book, and therefore needed them with me. Normally
+when I print out source code (which admittedly is rarely), I just hit 'print'
+from vim.
+
+However, I ran across a post recently by [Luke Gorrie](http://blog.lukego.com/)
+titled [Readable Programs](http://blog.lukego.com/blog/2012/10/24/readable-programs/).
+I'd seen [CWEB](http://sunburn.stanford.edu/~knuth/cweb.html) before, as well
+as Michael Fogus' [Marginalia](http://fogus.github.com/marginalia/), so the
+concept wasn't new. However, his inclusion of a sed oneliner for producing
+PDF listings triggered some latent ideas in my head. In his oneliner, he
+uses `---` as the delimiter for markdown comments. However, I wanted to be
+able to take just any Go source file and produce a listing without any
+special syntax or weird formatting: if it's good enough for GoDoc, it should
+be good enough for whatever tool I use. Particularly, the use of Markdown
+as the "literate" formatting syntax stuck with me.
+
+The tool I've written, `golst`, is designed to extract the godoc comments out
+of the package. I've put this together in an hour or so, so right now the
+`/* */` style comments aren't parsed, only `//` comments that start the line.
+
+For example output, see the listings for the `listing.go` source file:
+
+* [raw source](/downloads/golst/listing.go)
+* [markdown listing](/downloads/golst/listing.go.md)
+* [HTML listing](/downloads/golst/listing.go.html)
+* [PDF listing](/downloads/golst/listing.go.pdf)
+

@@ -1,0 +1,273 @@
+
+<!doctype html>
+<html>
+<head>
+<title>listing.go</title>
+<meta charset="UTF-8">
+<style type="text/css" media=screen>
+ 
+
+ 
+body {
+	color: black;
+	font-family: serif;
+	margin: 0;
+	padding: 0
+}
+
+ 
+.header { background-color: white; border: 0; text-align: center; }
+.header a { border: 0; color: black; text-decoration: none; }
+.header a:visited { color: black }
+.midHeader img { border: 0; }
+
+.headerTitle { font-weight: bold; margin: 0 0 0 0.5em; padding: 0.5em; }
+.headerTitle a { border: 0; text-decoration: none; }
+.headerTitle a:visited { color: black; }
+
+.headerSubTitle { font-weight: bold; margin-left: 1em; }
+
+ 
+ 
+#side-bar {
+    clear: both;
+    border: 1;
+    padding-left: 1em;
+    background-color: white;
+    margin: 0 00%;
+    text-align: center;
+}
+
+#side-bar a {
+    display: inline;
+    line-height:2.1em;
+    white-space: nowrap;
+    padding: 0.1ex 1ex 0.1em 1ex;
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#side-bar a:visited {
+    color: black;
+}
+
+ 
+#main {
+	max-width: 70em;
+	color: black;
+	 
+        margin: 0 10% 0 20% ;
+	padding: 1em 1em 1em 1em;
+	border: 0;
+}
+
+#main a { color: black; text-decoration: none; font-weight: bold; }
+#main a:hover { text-decoration: underline; }
+#main h1, #main-copy h2 { color: black; }
+#main ul { list-style-type: square; }
+
+ 
+#footer {
+	background-color: white;
+	color: black;
+	padding: 2em;
+	clear: both;
+}
+
+#footer .left { text-align: left; float: left; clear: left; }
+#footer .right { text-align: right; }
+#footer a { color: black; text-decoration: none; font-weight: bold; }
+#footer a:hover { text-decoration: underline; }
+
+abbr, acronym { border-bottom: 1px dotted #333; cursor: help; }
+blockquote { border-left: 1px solid #333; font-style: italic; padding: 1em; }
+hr { border-width: 0 0 0.1em 0; border-color: black; }
+
+ 
+pre { margin-left: 2em; }
+a:visited { color: black; }
+</style>
+</head>
+<body>
+<div id="main">
+<h2>listing.go</h2>
+
+<h3>2013-03-10 16:07:21 MDT</h3>
+
+<p>golist is a Go utility for producing readable Go source listings
+using markdown. There are two rules it uses in producing these
+markdown listings:</p>
+
+<ol>
+<li>lines beginning with a double slash are treated as markdown text.</li>
+<li>all other lines are indented with a tab; according to markdown&rsquo;s
+syntax, this should produce a code listing.</li>
+</ol>
+
+<p>Currently, the only output formats supported are writing to standard out
+or a markdown file.</p>
+
+<pre><code>package main
+
+import (
+    &quot;bufio&quot;
+    &quot;flag&quot;
+    &quot;fmt&quot;
+    &quot;io&quot;
+    &quot;io/ioutil&quot;
+    &quot;os&quot;
+    &quot;regexp&quot;
+    &quot;time&quot;
+)
+
+const DefaultDateFormat = &quot;2006-01-02 15:04:05 MST&quot;
+
+var (
+    CommentLine   = regexp.MustCompile(&quot;^\\s*//\\s*&quot;)
+    DateFormat    = DefaultDateFormat
+    OutputFormats map[string]OutputWriter
+)
+</code></pre>
+
+<p>An output writer takes markdown source and an output file name, and
+handles its output, whether writing to a file or displaying to screen.</p>
+
+<pre><code>type OutputWriter func(string, string) error
+
+func init() {
+    OutputFormats = make(map[string]OutputWriter, 0)
+    OutputFormats[&quot;-&quot;] = ScreenWriter
+    OutputFormats[&quot;html&quot;] = HtmlWriter
+    OutputFormats[&quot;md&quot;] = MarkdownWriter
+    OutputFormats[&quot;pdf&quot;] = PdfWriter
+}
+</code></pre>
+
+<p>SourceToMarkdown takes a file and returns a string containing the
+source converted to markdown.</p>
+
+<pre><code>func SourceToMarkdown(filename string) (markdown string, err error) {
+    file, err := os.Open(filename)
+    if err != nil {
+        return
+    }
+    defer file.Close()
+    buf := bufio.NewReader(file)
+
+    var (
+        line      string
+        longLine  bool
+        lineBytes []byte
+        isPrefix  bool
+        comment   bool
+    )
+
+    markdown += &quot;## &quot; + filename + &quot;\n&quot;
+    printDate := time.Now().Format(DateFormat)
+    markdown += &quot;### &quot; + printDate + &quot;\n\n&quot;
+
+    for {
+        err = nil
+        lineBytes, isPrefix, err = buf.ReadLine()
+        if io.EOF == err {
+            err = nil
+            break
+        } else if err != nil {
+            break
+        } else if isPrefix {
+            line += string(lineBytes)
+
+            longLine = true
+            continue
+        } else if longLine {
+            line += string(lineBytes)
+            longLine = false
+        } else {
+            line = string(lineBytes)
+        }
+
+        if CommentLine.MatchString(line) {
+            if !comment {
+                markdown += &quot;\n&quot;
+            }
+            markdown += CommentLine.ReplaceAllString(line, &quot;&quot;)
+            comment = true
+        } else {
+</code></pre>
+
+<p>The comment flag is used to trigger a newline
+before a codeblock; in some markdown
+implementations, not doing this will cause the code
+block to not be displayed properly.</p>
+
+<pre><code>            if comment {
+                markdown += &quot;  \n&quot;
+                comment = false
+            }
+            markdown += &quot;\t&quot;
+            markdown += line
+        }
+        markdown += &quot;\n&quot;
+    }
+    return
+}
+
+func main() {
+    fDateFormat := flag.String(&quot;t&quot;, DefaultDateFormat,
+        &quot;specify a format for the listing date&quot;)
+    fOutputFormat := flag.String(&quot;o&quot;, &quot;-&quot;, &quot;output format&quot;)
+    flag.Parse()
+
+    DateFormat = *fDateFormat
+    outHandler, ok := OutputFormats[*fOutputFormat]
+    if !ok {
+        fmt.Printf(&quot;[!] %s is not a supported output format.\n&quot;,
+            *fOutputFormat)
+        fmt.Println(&quot;Supported formats:&quot;)
+        fmt.Println(&quot;\t-        write markdown to standard output&quot;)
+        fmt.Println(&quot;\thtml     produce an HTML listing&quot;)
+        fmt.Println(&quot;\tmd       write markdown to file&quot;)
+        os.Exit(1)
+    }
+
+    for _, sourceFile := range flag.Args() {
+        md, err := SourceToMarkdown(sourceFile)
+        if err != nil {
+            fmt.Fprintf(os.Stderr,
+                &quot;[!] couldn't convert %s to markdown: %s\n&quot;,
+                sourceFile, err.Error())
+            continue
+        }
+        if err := outHandler(md, sourceFile); err != nil {
+            fmt.Fprintf(os.Stderr,
+                &quot;[!] couldn't convert %s to markdown: %s\n&quot;,
+                sourceFile, err.Error())
+        }
+    }
+
+}
+</code></pre>
+
+<p>ScreenWriter prints the markdown to standard output.</p>
+
+<pre><code>func ScreenWriter(markdown string, filename string) (err error) {
+    _, err = fmt.Println(markdown)
+    return
+}
+</code></pre>
+
+<p>MarkdownWriter writes the markdown listing to a file.</p>
+
+<pre><code>func MarkdownWriter(markdown string, filename string) (err error) {
+    err = ioutil.WriteFile(filename+&quot;.md&quot;, []byte(markdown), 0644)
+    return
+}
+</code></pre>
+
+</div>
+<div id="footer">
+<div class="right">listing.go generated by <a href="https://gokyle.github.com/golst/">golst</a> on 2013-03-10 16:07:21 MDT.
+</body>
+</html>
