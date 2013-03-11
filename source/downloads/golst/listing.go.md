@@ -1,6 +1,5 @@
 ## listing.go
-### 2013-03-10 16:07:26 MDT
-
+<small>2013-03-10 19:55:11 MDT</small>
 
 golist is a Go utility for producing readable Go source listings
 using markdown. There are two rules it uses in producing these

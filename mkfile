@@ -14,3 +14,5 @@ preview:V:
         $SRVWD $BUILD
 test:V:site
        rsync -auvz $BUILD/* $TESTREMOTE 
+jekprv:V:site
+        jekyll --auto --server 8000
