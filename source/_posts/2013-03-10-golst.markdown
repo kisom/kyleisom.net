@@ -37,7 +37,9 @@ For example output, see the listings for the `listing.go` source file:
 * [raw source](/downloads/golst/listing.go)
 * [markdown listing](/downloads/golst/listing.go.md)
 * [HTML listing](/downloads/golst/listing.go.html)
+* [LaTeX listing](/downloads/golst/listing.go.ltx)
 * [PDF listing](/downloads/golst/listing.go.pdf)
+* [TeX listing](/downloads/golst/listing.go.tex)
 
 Source code is up on [Github](https://github.com/gokyle/golst). Alternatively,
 

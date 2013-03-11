@@ -101,7 +101,7 @@ a:visited { color: black; }
 <div id="main">
 <h2>listing.go</h2>
 
-<p><small>2013-03-10 19:55:16 MDT</small></p>
+<p><small>2013-03-10 21:58:31 MDT</small></p>
 
 <p>golist is a Go utility for producing readable Go source listings
 using markdown. There are two rules it uses in producing these
@@ -125,6 +125,7 @@ import (
     &quot;io&quot;
     &quot;io/ioutil&quot;
     &quot;os&quot;
+        &quot;path/filepath&quot;
     &quot;regexp&quot;
     &quot;time&quot;
 )
@@ -134,21 +135,36 @@ const DefaultDateFormat = &quot;2006-01-02 15:04:05 MST&quot;
 var (
     CommentLine   = regexp.MustCompile(&quot;^\\s*//\\s*&quot;)
     DateFormat    = DefaultDateFormat
+        InputFormats  map[string]SourceTransformer
     OutputFormats map[string]OutputWriter
+        OutputDirectory string
 )
 </code></pre>
 
-<p>An output writer takes markdown source and an output file name, and
+<p>A SourceTransformer converts the source code to desired form. For example,
+it might convert the source to markdown, which can then be passed to a
+conversion function.</p>
+
+<pre><code>type SourceTransformer func(string) (string, error)
+</code></pre>
+
+<p>An OutputWriter takes markdown source and an output file name, and
 handles its output, whether writing to a file or displaying to screen.</p>
 
 <pre><code>type OutputWriter func(string, string) error
 
 func init() {
+        InputFormats = make(map[string]SourceTransformer, 0)
+        InputFormats[&quot;markdown&quot;] = SourceToMarkdown
+        InputFormats[&quot;tex&quot;] = SourceToLatex
+
     OutputFormats = make(map[string]OutputWriter, 0)
     OutputFormats[&quot;-&quot;] = ScreenWriter
     OutputFormats[&quot;html&quot;] = HtmlWriter
+        OutputFormats[&quot;latex&quot;] = PandocTexWriter
     OutputFormats[&quot;md&quot;] = MarkdownWriter
     OutputFormats[&quot;pdf&quot;] = PdfWriter
+    OutputFormats[&quot;tex&quot;] = TexWriter
 }
 </code></pre>
 
@@ -168,12 +184,12 @@ source converted to markdown.</p>
         longLine  bool
         lineBytes []byte
         isPrefix  bool
-        comment   bool
+        comment   = true
     )
 
     markdown += &quot;## &quot; + filename + &quot;\n&quot;
     printDate := time.Now().Format(DateFormat)
-    markdown += &quot;### &quot; + printDate + &quot;\n\n&quot;
+    markdown += &quot;&lt;small&gt;&quot; + printDate + &quot;&lt;/small&gt;\n\n&quot;
 
     for {
         err = nil
@@ -225,9 +241,15 @@ func main() {
     fDateFormat := flag.String(&quot;t&quot;, DefaultDateFormat,
         &quot;specify a format for the listing date&quot;)
     fOutputFormat := flag.String(&quot;o&quot;, &quot;-&quot;, &quot;output format&quot;)
+        fOutputDir := flag.String(&quot;d&quot;, &quot;.&quot;,
+                &quot;directory listings should be saved in.&quot;)
     flag.Parse()
 
     DateFormat = *fDateFormat
+        OutputDirectory = *fOutputDir
+
+        var transformer SourceTransformer
+
     outHandler, ok := OutputFormats[*fOutputFormat]
     if !ok {
         fmt.Printf(&quot;[!] %s is not a supported output format.\n&quot;,
@@ -235,25 +257,41 @@ func main() {
         fmt.Println(&quot;Supported formats:&quot;)
         fmt.Println(&quot;\t-        write markdown to standard output&quot;)
         fmt.Println(&quot;\thtml     produce an HTML listing&quot;)
+                fmt.Println(&quot;\tlatex    produce a LaTeX listing&quot;)
         fmt.Println(&quot;\tmd       write markdown to file&quot;)
+                fmt.Println(&quot;\tpdf      produce a PDF listing&quot;)
+                fmt.Println(&quot;\ttex      produce a TeX listing&quot;)
         os.Exit(1)
     }
 
+        if *fOutputFormat != &quot;tex&quot; {
+                transformer = InputFormats[&quot;markdown&quot;]
+        } else {
+                transformer = InputFormats[&quot;tex&quot;]
+        }
+
     for _, sourceFile := range flag.Args() {
-        md, err := SourceToMarkdown(sourceFile)
+        out, err := transformer(sourceFile)
         if err != nil {
             fmt.Fprintf(os.Stderr,
-                &quot;[!] couldn't convert %s to markdown: %s\n&quot;,
+                &quot;[!] couldn't convert %s to listing: %s\n&quot;,
                 sourceFile, err.Error())
             continue
         }
-        if err := outHandler(md, sourceFile); err != nil {
+        if err := outHandler(out, sourceFile); err != nil {
             fmt.Fprintf(os.Stderr,
-                &quot;[!] couldn't convert %s to markdown: %s\n&quot;,
+                &quot;[!] couldn't convert %s to listing: %s\n&quot;,
                 sourceFile, err.Error())
         }
     }
 
+}
+</code></pre>
+
+<p>GetOutFile joins the output directory with the filename.</p>
+
+<pre><code>func GetOutFile(filename string) string {
+        return filepath.Join(OutputDirectory, filename)
 }
 </code></pre>
 
@@ -265,16 +303,17 @@ func main() {
 }
 </code></pre>
 
-<p>MarkdownWriter writes the markdown listing to a file.</p>
+<p>MarkdownWriter writes the transformed listing to a file.</p>
 
-<pre><code>func MarkdownWriter(markdown string, filename string) (err error) {
-    err = ioutil.WriteFile(filename+&quot;.md&quot;, []byte(markdown), 0644)
+<pre><code>func MarkdownWriter(listing string, filename string) (err error) {
+        outFile := GetOutFile(filename + &quot;.md&quot;)
+    err = ioutil.WriteFile(outFile, []byte(listing), 0644)
     return
 }
 </code></pre>
 
 </div>
 <div id="footer">
-<div class="right">listing.go generated by <a href="https://gokyle.github.com/golst/">golst</a> on 2013-03-10 19:55:16 MDT.
+<div class="right">listing.go generated by <a href="https://gokyle.github.com/golst/">golst</a> on 2013-03-10 21:58:31 MDT.
 </body>
 </html>

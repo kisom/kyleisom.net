@@ -1,13 +1,26 @@
-// golist is a Go utility for producing readable Go source listings
-// using markdown. There are two rules it uses in producing these
-// markdown listings:
-//
-// 1. lines beginning with a double slash are treated as markdown text.
-// 2. all other lines are indented with a tab; according to markdown's
-// syntax, this should produce a code listing.
-//
-// Currently, the only output formats supported are writing to standard out
-// or a markdown file.
+\documentclass[11pt]{article}
+\usepackage{parskip}
+\setlength{\parindent}{11pt}
+\setlength{\parindent}{0cm}
+
+\title{listing.go}
+
+\begin{document}
+\maketitle
+
+golist is a Go utility for producing readable Go source listings
+using markdown. There are two rules it uses in producing these
+markdown listings:
+
+1. lines beginning with a double slash are treated as markdown text.
+2. all other lines are indented with a tab; according to markdown's
+syntax, this should produce a code listing.
+
+Currently, the only output formats supported are writing to standard out
+or a markdown file.
+
+
+\begin{verbatim}
 package main
 
 import (
@@ -32,13 +45,23 @@ var (
         OutputDirectory string
 )
 
-// A SourceTransformer converts the source code to desired form. For example,
-// it might convert the source to markdown, which can then be passed to a
-// conversion function.
+\end{verbatim}
+
+A SourceTransformer converts the source code to desired form. For example,
+it might convert the source to markdown, which can then be passed to a
+conversion function.
+
+
+\begin{verbatim}
 type SourceTransformer func(string) (string, error)
 
-// An OutputWriter takes markdown source and an output file name, and
-// handles its output, whether writing to a file or displaying to screen.
+\end{verbatim}
+
+An OutputWriter takes markdown source and an output file name, and
+handles its output, whether writing to a file or displaying to screen.
+
+
+\begin{verbatim}
 type OutputWriter func(string, string) error
 
 func init() {
@@ -55,8 +78,13 @@ func init() {
 	OutputFormats["tex"] = TexWriter
 }
 
-// SourceToMarkdown takes a file and returns a string containing the
-// source converted to markdown.
+\end{verbatim}
+
+SourceToMarkdown takes a file and returns a string containing the
+source converted to markdown.
+
+
+\begin{verbatim}
 func SourceToMarkdown(filename string) (markdown string, err error) {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -104,10 +132,15 @@ func SourceToMarkdown(filename string) (markdown string, err error) {
 			markdown += CommentLine.ReplaceAllString(line, "")
 			comment = true
 		} else {
-			// The comment flag is used to trigger a newline
-			// before a codeblock; in some markdown
-			// implementations, not doing this will cause the code
-			// block to not be displayed properly.
+\end{verbatim}
+
+The comment flag is used to trigger a newline
+before a codeblock; in some markdown
+implementations, not doing this will cause the code
+block to not be displayed properly.
+
+
+\begin{verbatim}
 			if comment {
 				markdown += "  \n"
 				comment = false
@@ -170,21 +203,39 @@ func main() {
 
 }
 
-// GetOutFile joins the output directory with the filename.
+\end{verbatim}
+
+GetOutFile joins the output directory with the filename.
+
+
+\begin{verbatim}
 func GetOutFile(filename string) string {
         return filepath.Join(OutputDirectory, filename)
 }
 
-// ScreenWriter prints the markdown to standard output.
+\end{verbatim}
+
+ScreenWriter prints the markdown to standard output.
+
+
+\begin{verbatim}
 func ScreenWriter(markdown string, filename string) (err error) {
 	_, err = fmt.Println(markdown)
 	return
 }
 
-// MarkdownWriter writes the transformed listing to a file.
+\end{verbatim}
+
+MarkdownWriter writes the transformed listing to a file.
+
+
+\begin{verbatim}
 func MarkdownWriter(listing string, filename string) (err error) {
         outFile := GetOutFile(filename + ".md")
 	err = ioutil.WriteFile(outFile, []byte(listing), 0644)
 	return
 }
 
+\end{verbatim}
+
+\end{document}
