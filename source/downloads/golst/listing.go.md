@@ -1,5 +1,5 @@
 ## listing.go
-<small>2013-03-10 21:58:31 MDT</small>
+<small>2013-03-10 22:10:43 MDT</small>
 
 golist is a Go utility for producing readable Go source listings
 using markdown. There are two rules it uses in producing these
@@ -21,7 +21,7 @@ or a markdown file.
 		"io"
 		"io/ioutil"
 		"os"
-	        "path/filepath"
+		"path/filepath"
 		"regexp"
 		"time"
 	)
@@ -29,11 +29,11 @@ or a markdown file.
 	const DefaultDateFormat = "2006-01-02 15:04:05 MST"
 	
 	var (
-		CommentLine   = regexp.MustCompile("^\\s*//\\s*")
-		DateFormat    = DefaultDateFormat
-	        InputFormats  map[string]SourceTransformer
-		OutputFormats map[string]OutputWriter
-	        OutputDirectory string
+		CommentLine     = regexp.MustCompile("^\\s*//\\s*")
+		DateFormat      = DefaultDateFormat
+		InputFormats    map[string]SourceTransformer
+		OutputFormats   map[string]OutputWriter
+		OutputDirectory string
 	)
 	
 
@@ -50,14 +50,14 @@ handles its output, whether writing to a file or displaying to screen.
 	type OutputWriter func(string, string) error
 	
 	func init() {
-	        InputFormats = make(map[string]SourceTransformer, 0)
-	        InputFormats["markdown"] = SourceToMarkdown
-	        InputFormats["tex"] = SourceToLatex
+		InputFormats = make(map[string]SourceTransformer, 0)
+		InputFormats["markdown"] = SourceToMarkdown
+		InputFormats["tex"] = SourceToLatex
 	
 		OutputFormats = make(map[string]OutputWriter, 0)
 		OutputFormats["-"] = ScreenWriter
 		OutputFormats["html"] = HtmlWriter
-	        OutputFormats["latex"] = PandocTexWriter
+		OutputFormats["latex"] = PandocTexWriter
 		OutputFormats["md"] = MarkdownWriter
 		OutputFormats["pdf"] = PdfWriter
 		OutputFormats["tex"] = TexWriter
@@ -136,14 +136,14 @@ block to not be displayed properly.
 		fDateFormat := flag.String("t", DefaultDateFormat,
 			"specify a format for the listing date")
 		fOutputFormat := flag.String("o", "-", "output format")
-	        fOutputDir := flag.String("d", ".",
-	                "directory listings should be saved in.")
+		fOutputDir := flag.String("d", ".",
+			"directory listings should be saved in.")
 		flag.Parse()
 	
 		DateFormat = *fDateFormat
-	        OutputDirectory = *fOutputDir
+		OutputDirectory = *fOutputDir
 	
-	        var transformer SourceTransformer
+		var transformer SourceTransformer
 	
 		outHandler, ok := OutputFormats[*fOutputFormat]
 		if !ok {
@@ -152,18 +152,18 @@ block to not be displayed properly.
 			fmt.Println("Supported formats:")
 			fmt.Println("\t-        write markdown to standard output")
 			fmt.Println("\thtml     produce an HTML listing")
-	                fmt.Println("\tlatex    produce a LaTeX listing")
+			fmt.Println("\tlatex    produce a LaTeX listing")
 			fmt.Println("\tmd       write markdown to file")
-	                fmt.Println("\tpdf      produce a PDF listing")
-	                fmt.Println("\ttex      produce a TeX listing")
+			fmt.Println("\tpdf      produce a PDF listing")
+			fmt.Println("\ttex      produce a TeX listing")
 			os.Exit(1)
 		}
 	
-	        if *fOutputFormat != "tex" {
-	                transformer = InputFormats["markdown"]
-	        } else {
-	                transformer = InputFormats["tex"]
-	        }
+		if *fOutputFormat != "tex" {
+			transformer = InputFormats["markdown"]
+		} else {
+			transformer = InputFormats["tex"]
+		}
 	
 		for _, sourceFile := range flag.Args() {
 			out, err := transformer(sourceFile)
@@ -186,7 +186,7 @@ block to not be displayed properly.
 GetOutFile joins the output directory with the filename.
   
 	func GetOutFile(filename string) string {
-	        return filepath.Join(OutputDirectory, filename)
+		return filepath.Join(OutputDirectory, filename)
 	}
 	
 
@@ -201,8 +201,7 @@ ScreenWriter prints the markdown to standard output.
 MarkdownWriter writes the transformed listing to a file.
   
 	func MarkdownWriter(listing string, filename string) (err error) {
-	        outFile := GetOutFile(filename + ".md")
+		outFile := GetOutFile(filename + ".md")
 		err = ioutil.WriteFile(outFile, []byte(listing), 0644)
 		return
 	}
-	
