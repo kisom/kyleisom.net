@@ -36,6 +36,7 @@ available at my [dotconf github repo](https://github.com/kisom/dotconf), you
 can view it [here](https://github.com/kisom/dotconf/blob/master/.sourcecon.zsh)
 
 The core of the code is the pair of functions:
+
 ```bash
 get_repo_type () {
     git status 2>/dev/null 1>/dev/null
