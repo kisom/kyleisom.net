@@ -1,0 +1,11 @@
+---
+layout: post
+title: "some thoughts on the chromebook pixel"
+date: 2013-03-29 19:31
+comments: true
+categories: [golang, development, cryptography]
+keywords: [golang, development, cryptography, book]
+tags: [golang, development, cryptography, book]
+---
+
+Last night, I gave my first talk at 
