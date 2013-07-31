@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "\"OpenSSH keys: A Walk-Through\""
+title: "OpenSSH keys: A Walk-Through"
 date: 2013-07-29 22:20
 comments: false
 categories: [ssh, golang]
