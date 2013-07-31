@@ -1,0 +1,24 @@
+ /================\
+| OTR FINGERPRINTS |
+ \================/
+
+==================================
+| Account: kyle@chat.tyrfingr.is |
+==================================
+
+Resource: ono-sendai / molly
+Fingerprint: 5B0CD35B 662F0472 7E97602D 6CA0A62E 8BAF7BD5
+
+Resource: voytek
+Fingerprint: DC52E205 0A400CA1 512018E9 C4E08F46 ED67DD01
+
+
+===========================
+| Account: kyle@dukgo.com |
+===========================
+
+Resource: ono-sendai / molly
+Fingerprint: 47086AAC 4411A88B AF0CEB59 C6B429C6 7424FF1F
+
+Resource: voytek
+Fingerprint: 32AB69D4 EB02D75F FB8914D2 333610A8 8C0B393B

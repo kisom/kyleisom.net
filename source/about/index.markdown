@@ -20,14 +20,20 @@ use C and python. On the side, I am a huge fan of Go.
 
 ### Published
 
-* [A Working Introduction to Cryptography: Illustrated with Python](https://leanpub.com/pycrypto): 20p. This is a testbed for evaluating Leanpub to publish a much
-longer introduction using [Go](http://golang.org).
+* [Practical Cryptography with Go](http://gokyle.org/book/) -
+an introduction to cryptography for developers. It assumes that you
+aren't looking for cryptographic theories, but practical ways to use
+cryptography in your projects. It covers the basic standard building
+blocks, and includes some sample code to help you get started. The
+book is currently in progress, and updates are published via Leanpub,
+and an HTML version is available for reading online.
 
 ### Contact
 
 * Email: `removea3lsZUB0eXJmaW5nci5pcw==`
 * XMPP: kyle@chat.tyrfingr.is
 * Silent Circle: +6 (504) 667-475
+* IRC: `kyl` or `gokyle` on FreeNode
 
 I have a pair of personal GnuPG keys:
 
