@@ -352,11 +352,12 @@ Let's talk elliptic curves now.
 
 ### Elliptic Curve keys
 
-Elliptic curves are the new hotness (and the future of public-key
-cryptography, but that's another post). Recent versions of OpenSSH
-support the use of ECDSA (elliptic curve keys for the digital signature
-algorithm), although if you're on a Mac, you're likely to be out of luck.
-Hopefully, OS X catches up on the crypto game soon.
+Elliptic curves are the new hotness (and both actually not very new
+as well as the future of public-key cryptography, but that's another
+post). Recent versions of OpenSSH support the use of ECDSA (elliptic
+curve keys for the digital signature algorithm), although if you're
+on a Mac, you're likely to be out of luck.  Hopefully, OS X catches
+up on the crypto game soon.
 
 The encrypted key format is exactly the same, so I'll focus on the
 unencrypted keys.
