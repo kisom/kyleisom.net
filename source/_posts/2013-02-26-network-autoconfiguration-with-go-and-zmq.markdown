@@ -15,7 +15,7 @@ servers, similar to the way UPnP works. (In fact, I got the idea while doing
 some UPnP work.)
 
 One of the things I've come to like about ØMQ is how it completely changes
-the way you build networked architectures. Traditionally, one things of these
+the way you build networked architectures. Traditionally, one thinks of these
 architectures as one server, multiple clients; a canonical example is a web
 server. ØMQ allows very different architectures (as well as the traditional
 ones). The [ØMQ guide](http://zguide.zeromq.org/page:all) discusses these

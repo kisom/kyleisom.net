@@ -5,7 +5,7 @@ BUILD=_site
 all:V:site
 gendep:V:site deploy
 site:V:
-        jekyll
+        jekyll build
 deploy:V:
        rsync -auvz $BUILD/* $REMOTE 
 clean:V:
@@ -15,4 +15,4 @@ preview:V:
 test:V:site
        rsync -auvz $BUILD/* $TESTREMOTE 
 jekprv:V:site
-        jekyll --auto --server 8000
+        jekyll --watch --port 8000 serve
