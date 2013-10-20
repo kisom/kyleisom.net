@@ -1,0 +1,287 @@
+---
+layout: post
+title: "Introduction to Patching Binaries with the HT Editor"
+date: 2013-10-19 21:12
+comments: false
+categories: [dc303, reversing, ctf]
+tags: [ht, hte, hacker's text editor, patching binaries, ctf, dc303]
+keywords: [ht, hte, hacker's text editor, patching binaries, ctf, dc303]
+---
+
+At last night's [DC303](http://dc303.org) meeting, mantis threw
+down some challenges for us to work through. The fifth challenge
+presented us with a challenge string that we had to run through a
+client authentication binary. However, the binary we had was wrong;
+a [diff](/code/hte_intro/client_auth1.diff) was included that showed
+the change we needed to make. The algorithm for authentication was
+pretty easy, and most people ended up writing it in C or Python. However,
+it was a case where patching the binary was far faster (in this
+case, changing one byte). It was apparent that most of the people
+who showed up weren't familiar with a very useful tool for doing
+those, so this is a short write up on how to solve those types of
+problems and an introduction to the tool ([the HT
+Editor](http://hte.sf.net/)). In this introduction, I'll assume you
+know enough x86 assembly to keep up, and either Python or C. The
+binaries were built by mantis on an Ubuntu 13.04 i386 system, so
+you'll want to have that on hand to follow along. It'll help if you
+have a basic familiarity with ELF headers when we get to the end.
+
+### Disassembly
+
+Let's use the venerable `objdump(1)` tool to examine the contents
+of the [client_auth1 binary](/code/ht_intro/client_auth1). Here,
+I've extracted main first, as this will be our starting point.
+
+```
+0804844c <main>:
+ 804844c:       55                      push   %ebp
+ 804844d:       89 e5                   mov    %esp,%ebp
+ 804844f:       83 e4 f0                and    $0xfffffff0,%esp
+ 8048452:       83 ec 20                sub    $0x20,%esp
+ 8048455:       c7 44 24 14 00 00 00    movl   $0x0,0x14(%esp)
+ 804845c:       00
+ 804845d:       c7 44 24 18 00 00 ff    movl   $0xffff0000,0x18(%esp)
+ 8048464:       ff
+ 8048465:       eb 12                   jmp    8048479 <main+0x2d>
+ 8048467:       83 44 24 14 01          addl   $0x1,0x14(%esp)
+ 804846c:       8b 44 24 1c             mov    0x1c(%esp),%eax
+ 8048470:       0f af 44 24 14          imul   0x14(%esp),%eax
+ 8048475:       01 44 24 18             add    %eax,0x18(%esp)
+ 8048479:       e8 a2 fe ff ff          call   8048320 <getchar@plt>
+ 804847e:       89 44 24 1c             mov    %eax,0x1c(%esp)
+ 8048482:       83 7c 24 1c 0a          cmpl   $0xa,0x1c(%esp)
+ 8048487:       75 de                   jne    8048467 <main+0x1b>
+ 8048489:       8b 44 24 18             mov    0x18(%esp),%eax
+ 804848d:       89 44 24 04             mov    %eax,0x4(%esp)
+ 8048491:       c7 04 24 40 85 04 08    movl   $0x8048540,(%esp)
+ 8048498:       e8 73 fe ff ff          call   8048310 <printf@plt>
+ 804849d:       b8 00 00 00 00          mov    $0x0,%eax
+ 80484a2:       c9                      leave
+ 80484a3:       c3                      ret
+ 80484a4:       66 90                   xchg   %ax,%ax
+ 80484a6:       66 90                   xchg   %ax,%ax
+ 80484a8:       66 90                   xchg   %ax,%ax
+ 80484aa:       66 90                   xchg   %ax,%ax
+ 80484ac:       66 90                   xchg   %ax,%ax
+ 80484ae:       66 90                   xchg   %ax,%ax
+ ```
+
+ As you can see, it doesn't call any other non-standard-lib functions
+-- it doesn't get any easier than this.
+
+The `main` function is pretty simple: it reads in characters
+until it encounters a new line; for each of those characters,
+it multiplies that character number by the value of the character,
+and adds that to a running tally (which starts off with value
+0xffff0000). In C, it's as easy as:
+
+```
+/*
+ * client-auth1.c
+ */
+
+#include <stdio.h>
+
+int
+main(void)
+{
+        int             i = 0;
+        unsigned        sum = 0xffff0000;
+        char            c;
+
+        while (0xa != (c = getchar())) {
+                i++;
+                sum += c * i;
+        }
+        printf("%010u\n", sum);
+}
+```
+
+Let's check to make sure this is right:
+
+```
+user@notahoneypot:~/20131018$ ./client-auth1
+test1234
+4294904205
+user@notahoneypot:~/20131018$ gcc -o ca1 ca1.c
+user@notahoneypot:~/20131018$ ./ca1
+test1234
+4294904205
+```
+
+Indeed, they match.
+
+### The Patch 
+
+Applying the [diff](/code/ht_intro/client-auth1.diff)
+
+```
+$ cat client-auth1.diff
+16c16
+<         sum += c * i;
+---
+>         sum -= c * i;
+```
+
+is pretty easy with the source code. However, it's far faster to
+patch the one byte needed to change this over.
+
+Here is the addition instruction that needs to be changed:
+
+```
+ 8048475:       01 44 24 18             add    %eax,0x18(%esp)
+```
+
+(If you're not sure how to look up the appropriate opcode, take a
+look at the [X86 Opcode and Instruction Reference](http://ref.x86asm.net/).
+In this case, we want the [coder32
+reference](http://ref.x86asm.net/coder32.html). We can see that the
+`01` opcode refers to `ADD      r/m16/32        r16/32`. You need
+to find the appropriate subtract instruction with the same operands;
+in this case, the opcode is `29`.) 
+
+We want to patch the instruction to be
+
+```
+ 8048475:       29 44 24 18             add    %eax,0x18(%esp)
+```
+
+(Notice only one byte has changed.)
+
+Let's break out the HT editor.
+
+### HT editor
+
+The HT editor is in most package repos:
+
+* in OpenBSD, it's `cd /usr/ports/editors/ht && make install` or `pkg_add ht`
+* in Ubuntu, it's `apt-get install ht`
+* in OS X/homebrew, it's `brew install ht`
+
+In many systems, the installed binary is renamed `hte` to avoid
+conflicting with another piece of software. HT also uses the function
+keys; so you'll want to make sure that the function keys are clear.
+This includes F10, which in the default `gnome-terminal` used in
+Ubuntu; be sure to disable that so you can exit HT.
+
+mantis and I discussed my method, and he came up with an alternate.
+I'll first show you how I did it, and then show how mantis would
+have done it. The second method is pretty flexible and is useful
+for doing more complex patching.
+
+Pulling up `client-auth1` in the HT editor, you should see something like this:
+
+![client_auth1 loaded in HT](/img/ht_intro/hte01.png)
+
+Let's search for our instruction (F7):
+
+![searching client_auth1 for the add instruction](/img/ht_intro/hte02.png)
+
+Lo and behold! Our instruction is found:
+
+![found the add instruction](/img/ht_intro/hte03.png)
+
+We can pop into edit mode with F4, and change the `01` to a `29`.
+Then, hit F2 to save and exit. Time for the moment of truth! Here's
+an example session from the challenge:
+
+```
+<voytek: ~> $ telnet 192.168.1.180 61023
+Trying 192.168.1.180...
+Connected to 192.168.1.180.
+Escape character is '^]'.
+Give me a name so I can watch your progress: mantis
+Enter level to skip to [0=default]: 5
+Enter password for level 5: XXXXXXXXXX
+Level 05: (client-auth1) Our agent found a website with an old version of the client authentication 
+on port 65325, challenge: sptjpgzczykbgwogqmbrhsg
+```
+
+Leaving that running, let's plug our challenge string into our modified `client-auth1`:
+
+```
+user@notahoneypot:~/20131018$ ./client-auth1
+sptjpgzczykbgwogqmbrhsg
+4294871738
+```
+
+We get an answer, but is it right?
+
+```
+Level 05: (client-auth1) Our agent found a website with an old version of the client authentication 
+on port 65325, challenge: sptjpgzczykbgwogqmbrhsg
+4294871738
+Correct. Password to next level 6: XXXXXXXXXX
+```
+
+It worked! Once you get the hang of the HT editor, it's pretty fast to use.
+
+### Binsmithing
+
+It turns out that, within certain constraints, binaries are actually
+rather malleable. These constraints are:
+
+1. For simple work, the length of the binary cannot change. In
+particular, the space taken up by the modifications must take up
+the same space as the original instructions. For example, if we
+wanted to stub out our add, we can't just change the four bytes to
+a single `90` (NOP); we would have to replace it with four NOPs,
+or perhaps two `xchg %ax,$ax` (i.e. `66 90 66 90`).
+
+2. For complex work, we'll have to edit the ELF file and section
+headers to adjust sizes and offsets. This is a bit of wizardry, and
+we won't look at it.
+
+In this case, we just changed the opcode without
+modifying the operands (and stayed in the same operand format);
+this doesn't violate the contraints and doesn't require any special
+header wizardry.
+
+Another option that wouldn't involve changing section headers (but is still more complex) is:
+
+0. find a location in the code that has padding
+0. add our instructions there
+0. change the original instruction to a jump (with NOP padding as
+necessary)
+0. add a jump at the end of our instructions to the next address
+after the jump.
+
+In our program, there are a few candidates: the end of the main
+function contains 12 bytes of padding (in the form of `xchg  %ax,%ax`),
+and `__libc_csu_init` contains 13 bytes of `nop` instructions. In this
+case, a jump would require 5 bytes, and our target instruction is
+only four bytes, so it wouldn't work here.
+
+### An Alternate Approach
+
+Instead of editing the bytes directly, another approach is to switch
+to `elf/image` mode (F6).
+
+![switching to elf/image](/img/ht_intro/hte04.png)
+
+Then, we can use F5 to go to the main function:
+
+![goto the main function](/img/ht_intro/hte05.png)
+
+Move down to the add that occurs right before the call to `getchar`,
+and switch to edit mode (F4). Use ^A to enter assembler mode:
+
+![assembler mode](/img/ht_intro/hte06.png)
+
+Change the add to a sub, save, and exit. Let's try our patched
+binary with the input we had before (sptjpgzczykbgwogqmbrhsg), and
+make sure we get the same output (4294871738):
+
+```
+user@notahoneypot:~/20131018$ ./client-auth1
+sptjpgzczykbgwogqmbrhsg
+4294871738
+```
+
+It is indeed the same output. You can see this approach makes complex
+editing easier, but takes a but more time a simple edit.
+
+### The End
+
+So that's a crash course in HT. In the near future, I'll be making
+a screencast where you can watch me do this on the console itself.
