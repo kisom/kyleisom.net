@@ -34,6 +34,20 @@ Hacker's Delight case). In this case, these numbers reverse to:
 * `x100` -> `0b0000000010000000` -> `0x80`
 * `0xab` -> `0b1101010100000000` -> `0xd500`
 
+This is done with a function like
+
+```
+// Algorithm from Hackker's Delight
+func reverseBits(x uint32) uint32 {
+    x = (x&0x55555555)<<1 | (x&0xAAAAAAAA)>>1
+    x = (x&0x33333333)<<2 | (x&0xCCCCCCCC)>>2
+    x = (x&0x0F0F0F0F)<<4 | (x&0xF0F0F0F0)>>4
+    x = (x&0x00FF00FF)<<8 | (x&0xFF00FF00)>>8
+    return (x&0x0000FFFF)<<16 | (x&0xFFFF0000)>>16
+}
+
+```
+
 Now, we have to cover the concept of *bit length*. This refers to the
 number of bits required to represent a number. For example, given our
 example numbers:
@@ -44,7 +58,7 @@ example numbers:
 * `0xab` has a bit length of 8
 
 In the τ function in Catena, we want numbers to be in reverse bit
-order with their bit length; the paper calls this function a
+order within their bit length; the paper calls this function a
 *bit-reversal permutation*. Keeping our previous examples, what we're
 looking for is
 
@@ -253,5 +267,7 @@ BenchmarkBasicHash             1        1240838690 ns/op
 ok      github.com/gokyle/catena        5.796s
 ```
 
-I think writing this was the most fun I've had coding all week (and
-possibly for the last couple weeks).
+I think figuring this out, doing the profiling, and writing the code
+was the most fun I've had as a programmer all week (and possibly for
+the last couple weeks). More importantly, not only did I have a blast
+writing `catena`, but I learned something from doing so.
