@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reverse Bit Order"
+title: "Bit-Reversal Permutations"
 date: 2013-11-29 19:59 MST
 comments: false
 categories: [hacking]
@@ -12,7 +12,9 @@ While I was writing my
 function to reverse the bit order of an integer. I couldn't find
 anything online that talked about how to do it, but plenty on the case
 covered in [Hacker's Delight](http://www.hackersdelight.org/); I
-figure I should write up what I did and how I did it.
+figure I should write up what I did and how I did it. A large part of
+this was because it took me a little bit to figure out the proper name
+for it.
 
 ### The Problem
 
@@ -24,9 +26,8 @@ consider the following numbers in our test case:
 * `0x100` (`0b0000000100000000`)
 * `0xab` (`0b0000000010101011`)
 
-Now, the normal case is to reverse the entire integer. I'll refer to
-this as the Hacker's Delight case. In this case, these numbers reverse
-to:
+Now, the normal case is to reverse the entire integer (i.e. the
+Hacker's Delight case). In this case, these numbers reverse to:
 
 * `0x1` -> `0b1000000000000000` -> `0x8000`
 * `0x10` -> `0b0000100000000000` -> `0x800`
@@ -57,7 +58,8 @@ looking for is
 A naïve implementation, using Go's math standard library (which
 provides the `BitLen` and `Bit` methods):
 
-```package naive
+```
+package naive
 
 import (
         "math/big"
