@@ -177,7 +177,8 @@ ok      hg.tyrfingr.is/kyle/revbits/slowertau   1.894s
 ```
 
 This version runs in less than a quarter of the time as our naïve
-implementation! In fact, this is enough to make `catena` usable:
+implementation! In fact, this is enough to make `catena` usable (with
+a garlic of 16, even):
 
 ```
 ~/code/go/src/github.com/gokyle/catena
