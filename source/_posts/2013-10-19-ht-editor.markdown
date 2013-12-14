@@ -113,7 +113,7 @@ Indeed, they match.
 
 ### The Patch 
 
-Applying the [diff](/code/ht_intro/client-auth1.diff)
+We were given [diff](/code/ht_intro/client-auth1.diff):
 
 ```
 $ cat client-auth1.diff
@@ -123,8 +123,9 @@ $ cat client-auth1.diff
 >         sum -= c * i;
 ```
 
-is pretty easy with the source code. However, it's far faster to
-patch the one byte needed to change this over.
+Applyign this is pretty easy with the source code. However, it's
+far faster to patch the one byte needed to change this over than
+to write the algorithm in C and patch that.
 
 Here is the addition instruction that needs to be changed:
 
@@ -143,7 +144,7 @@ in this case, the opcode is `29`.)
 We want to patch the instruction to be
 
 ```
- 8048475:       29 44 24 18             add    %eax,0x18(%esp)
+ 8048475:       29 44 24 18             sub    %eax,0x18(%esp)
 ```
 
 (Notice only one byte has changed.)
