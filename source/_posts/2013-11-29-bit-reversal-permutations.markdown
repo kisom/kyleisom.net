@@ -37,7 +37,7 @@ Hacker's Delight case). In this case, these numbers reverse to:
 This is done with a function like
 
 ```
-// Algorithm from Hackker's Delight
+// Algorithm from Hacker's Delight
 func reverseBits(x uint32) uint32 {
     x = (x&0x55555555)<<1 | (x&0xAAAAAAAA)>>1
     x = (x&0x33333333)<<2 | (x&0xCCCCCCCC)>>2
@@ -239,10 +239,10 @@ func bitLength(x uint32) uint32 {
 ```
 
 The first case in the switch checks for a number greater than
-2<sup>24</sup>; in this case, we go through the full 32 bit
-integers. The second case checks for a 24-bit integer, the third case
-checks for a 16-bit integer, and by default, we treat the number as an
-8-bit integer. In this case, we can cut the number of iterations down
+2<sup>24</sup>; in this case, we go through the full 32 bits. The
+second case checks for a 24-bit integer, the third case checks for a
+16-bit integer, and by default, we treat the number as an 8-bit
+integer. In this case, we can cut the number of iterations down
 significantly. How much does this improve our benchmark?
 
 ```
@@ -266,6 +266,9 @@ PASS
 BenchmarkBasicHash             1        1240838690 ns/op
 ok      github.com/gokyle/catena        5.796s
 ```
+
+In this case, we saved only 200ms, but if this was providing password
+hashing to a web site, that performance might be useful.
 
 I think figuring this out, doing the profiling, and writing the code
 was the most fun I've had as a programmer all week (and possibly for

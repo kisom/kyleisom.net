@@ -15,4 +15,4 @@ preview:V:
 test:V:site
        rsync -auvz $BUILD/* $TESTREMOTE 
 jekprv:V:site
-        jekyll serve --watch --port 8000
+        jekyll serve --port 8000

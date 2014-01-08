@@ -31,7 +31,7 @@ and an HTML version is available for reading online.
 ### Contact
 
 * Email: `removea3lsZUB0eXJmaW5nci5pcw==`
-* XMPP: kyle@chat.tyrfingr.is
+* XMPP: kyle@tyrfingr.is
 * Silent Circle: +6 (504) 667-475
 * IRC: `kyl` or `gokyle` on FreeNode
 
@@ -56,8 +56,10 @@ I have a pair of personal GnuPG keys:
 ### Notable Posts
 
 <ul>
+<li><span class="label inverse">2013/07/31</span> <a href="http://kyleisom.net/blog/2013/07/31/secure-communications">Securing Communications Between Peers</a></li>
+<li><span class="label inverse">2013/02/26</span> <a href="http://kyleisom.net/blog/2013/02/26/network-autoconfiguration-with-go-and-zmq">Network Autoconfiguration with Go and ØMQ</a></li>
 <li><span class="label inverse">2012/10/17</span> <a href="/blog/2012/10/17/syntax-off">:syntax off</a></li>
-<li><span class="label inverse">2011/06/17</span> <a href="/blog/2011/06/17/intro-to-crypto/">A Working Introduction to Cryptography</a></li>
+<!--<li><span class="label inverse">2011/06/17</span> <a href="/blog/2011/06/17/intro-to-crypto/">A Working Introduction to Cryptography</a></li>-->
 <li><span class="label inverse">2012/02/01</span> <a href="http://kyleisom.net/blog/2012/02/01/using-set-theory/">Using Set Theory</a></li>
 <li><span class="label inverse">2012/01/23</span> <a href="/blog/2012/01/23/basic-set-theory/">Basic Set Theory</a></li>
 <li><span class="label inverse">2011/12/31</span> <a href="/blog/2011/12/31/my-docs-were-dropped/">My Docs Were Dropped</a></li>
