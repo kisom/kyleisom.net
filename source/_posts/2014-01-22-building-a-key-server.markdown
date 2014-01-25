@@ -17,7 +17,7 @@ choices I've made along the way.
 
 ## TKDF: the key derivation function
 
-The first thing I need to do was to figure out a way to secure keys
+The first thing I needed to do was to figure out a way to secure keys
 stored in memory (I'll refer to keys stored in memory as *secrets*,
 and keys used by the KDF as *keys*). To this end, I designed a system
 that would minimise the impact to the system's entropy while still
@@ -96,7 +96,7 @@ It's instructive to consider this as two cases:
 
 1. In some systems, the operating system can only provide
    second-resolution timestamps, not nanosecond resolution. What would
-   be the impact to he system if this were the case? Each timestamp
+   be the impact to the system if this were the case? Each timestamp
    provides a maximum of 2<sup>64</sup>-1 blocks of encrypted data
    (due to the use of AES in CTR mode). The block size of AES is 16
    bytes, therefore 2<sup>63</sup> blocks of data is
@@ -155,12 +155,13 @@ paranoid and restrictive in granting access. In the end, it turned out
 this was the biggest problem I'd have.
 
 In the end, trying to make Arx a generic key server led to the
-authentication system being a unwieldy.
+authentication system being a unwieldy; this was another problematic
+component.
 
 ## Keyvault: storing secrets securely
 
-Once Arx was complete, I examined in detail and determined what went
-problems it faced, which led to the development of
+Once Arx was complete, I examined it in detail and determined what
+went problems it faced, which led to the development of
 [`keyvault`](https://github.com/gokyle/keyvault).
 
 ### The Arx post-mortem
@@ -174,9 +175,10 @@ There were three major problems that Arx brought to light:
    the database.
 
 The first problem with Arx was that the situation where a key server's
-RBAC is most useful when it's tied into an existing system. Arx tried
-to dictate an authentication scheme that added more overhead than I
-wanted. The scheme I ended up with looked something like:
+access control is most useful when it's tied into an existing
+system. Arx tried to dictate an authentication scheme that added more
+overhead than I wanted. The scheme I ended up with looked something
+like:
 
 
 ```
@@ -207,7 +209,7 @@ disk encrypted. An attacker who had access to the keystore shouldn't
 gain anything valuable from it. A key server should be self-contained
 and govern all access to the keystore.
 
-The third problem was the security log and it's accessibility by the
+The third problem was the security log and its accessibility by the
 operating system. Namely, Postgres can't enforce append-only behaviour
 on a table (at least not that I could find). Ideally, a log must be
 trustable as a source of information. If an attacker can remove log
@@ -289,7 +291,7 @@ field indicating the action that occurred, and a collection of
 metadata entries in the same form as the previous two structures.
 
 The last component was to implement revocations; public key systems
-benefit from having protected revocation store. In `keyvault`, this
+benefit from having a protected revocation store. In `keyvault`, this
 was implemented similarly to secrets and contexts: a hash map of
 revocation identifiers pointing to revocations. The revocation
 structure only needed to store a revocation identifier, timestamp, and
@@ -299,11 +301,11 @@ never removed.
 One caution that had to be made was to return copies of data in the
 keystore to prevent modification by the user except via the
 appropriate function. Particularly, making copies of the metadata --
-these are effectively pointing. For example, a context check takes a
-struct and not a pointer to a struct. However, copying the metadata to
-a new map, a context check could modify the metadata. There is a
-function provided for this, but this prevents inadvertant
-modifictions.
+these are effectively pointers to a hash map. For example, a context
+check takes a struct and not a pointer to a struct. However, copying
+the metadata to a new map, a context check could modify the
+metadata. There is a function provided for this, but this prevents
+inadvertant modifictions.
 
 Having these data structures in memory is only half the task; the
 other half is to provide security when the keystore is not in use. For
@@ -319,7 +321,7 @@ because *strongbox* employs its own tag.
 
 ## Tying it together
 
-There are a couple points I wanted to make in writing this.
+There are a few points I wanted to make in writing this.
 
 1. It's important to start secure systems with a security model in the
    design stage. This ensures that the system is designed with the
