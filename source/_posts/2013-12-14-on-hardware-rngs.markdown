@@ -13,13 +13,14 @@ things.
 1. The first thing that causes me concern: FreeBSD did this in
    September -- and people are just now noticing this?
 
-2. If your article says FreeBSD will no longer use hardware RNGs, I'm
-   probably going to write you off as security illiterate. FreeBSD is
-   not using the hardware RNGs *directly*. As you shouldn't. More on
-   that later. So many places are spewing, for lack of a better word,
-   copious volumes of bullshit and outright falsehoods on the
-   subject. If you don't know what you're talking about, don't talk as
-   if you do -- particularly in regards to security.
+2. If your article says FreeBSD will no longer use hardware RNGs, it's
+   probably a sign you should do more careful fact-checking. FreeBSD
+   is not using the hardware RNGs *directly*. As you shouldn't. More
+   on that later. So many places are spewing, for lack of a better
+   word, copious volumes of bullshit and outright falsehoods on the
+   subject. If you don't know what you're talking about, please don't
+   talk as if you do -- particularly in regards to security. It's a
+   dangerous thing to do.
 
 Full disclaimer: I don't care for, nor do I use FreeBSD. My stance
 hasn't changed with this news.
@@ -27,12 +28,13 @@ hasn't changed with this news.
 What did happen? FreeBSD isn't feeding the `/dev/random` *directly*
 from hardware PRNGs. The proper way to do this is to feed multiple
 entropy sources into a software PRNG that mixes the entropy
-together. FreeBSD uses Yarrow, as does Linux. This is the same as
-feeding `/dev/random` using [EGD](http://egd.sourceforge.net/) (the
-entropy gathering daemon). This is the right way to do an operating
-system's randomness framework: grab entropy from as many sources as
-you can (HWRNGs, keyboard, disk, network, mouse, whatever you have
-available) and put it into your PRNG, which feeds `/dev/random`.
+together. FreeBSD uses Yarrow, a PRNG developed by Ferguson, Kelsey,
+and Schneier.  This is the same as feeding `/dev/random` using
+[EGD](http://egd.sourceforge.net/) (the entropy gathering
+daemon). This is the right way to do an operating system's randomness
+framework: grab entropy from as many sources as you can (HWRNGs,
+keyboard, disk, network, mouse, whatever you have available) and put
+it into your PRNG, which feeds `/dev/random`.
 
 If you'd like to learn more about the subject, you should take a look
 at chapter 9 of

@@ -8,6 +8,12 @@ keywords: [pycrypto, python, cryptography, applied cryptography, public key cryp
 tags: [pycrypto, python, cryptography, applied cryptography, public key cryptography, private key cryptography, symmetric, asymmetric, cryptographic digests, hashing, hybrid keys, cryptographic keys]
 ---
 
+*Note*: this up available on [Leanpub](https://leanpub.com/gocrypto/)
+ in PDF, EPUB, and MOBI formats for 1 USD.
+
+*Note*: I haven't coded in Python seriously for over a year now; the
+ EC part may be less idiomatic than it should be.
+
 # Introduction
 
 Recently at work I have been using the

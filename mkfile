@@ -1,7 +1,7 @@
 REMOTE=brokenlcd.net:sites/kyleisom.net
 TESTREMOTE=brokenlcd.net:sites/blog.tyrfingr.is
 SRVWD=cachesrv
-BUILD=_site
+BUILD=build
 all:V:site
 gendep:V:site deploy
 site:V:

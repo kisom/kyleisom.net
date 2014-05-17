@@ -4,13 +4,15 @@ title: About Kyle
 ---
 
 <h2>About</h2>
-Hello! My name is Kyle Isom. 
+Hello! My name is Kyle Isom. At the moment I'm a web developer. Before
+that, I was a security engineer, something I hope to get back to soon.
 
 ### Some links
 
 * [Main Github profile](https://github.com/kisom)
 * [Go code](http://gokyle.github.com)
 * [Code portfolio](https://tyrfingr.is)
+* [Crypto projects](https://tyrfingr.is/crypto/)
 * [Bitbucket](https://bitbucket.org/kisom)
 * [My Resumé](/resume/)
 * [My Setup](/uses/)
@@ -57,7 +59,7 @@ I have a pair of personal GnuPG keys:
 <li><span class="label inverse">2013/07/31</span> <a href="http://kyleisom.net/blog/2013/07/31/secure-communications">Securing Communications Between Peers</a></li>
 <li><span class="label inverse">2013/02/26</span> <a href="http://kyleisom.net/blog/2013/02/26/network-autoconfiguration-with-go-and-zmq">Network Autoconfiguration with Go and ØMQ</a></li>
 <li><span class="label inverse">2012/10/17</span> <a href="/blog/2012/10/17/syntax-off">:syntax off</a></li>
-<!--<li><span class="label inverse">2011/06/17</span> <a href="/blog/2011/06/17/intro-to-crypto/">A Working Introduction to Cryptography</a></li>-->
+<li><span class="label inverse">2011/06/17</span> <a href="/blog/2011/06/17/intro-to-crypto/">A Working Introduction to Cryptography</a></li>
 <li><span class="label inverse">2012/02/01</span> <a href="http://kyleisom.net/blog/2012/02/01/using-set-theory/">Using Set Theory</a></li>
 <li><span class="label inverse">2012/01/23</span> <a href="/blog/2012/01/23/basic-set-theory/">Basic Set Theory</a></li>
 <li><span class="label inverse">2011/12/31</span> <a href="/blog/2011/12/31/my-docs-were-dropped/">My Docs Were Dropped</a></li>
