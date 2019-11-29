@@ -50,7 +50,7 @@ code without the aid of syntax highlighting.
 
 One of the points that was brought up is that reading and writing code is
 not like reading and writing in natural languages. I can definitely understand
-this viewpoint, but I treat computer langauges internally very similar to
+this viewpoint, but I treat computer languages internally very similar to
 spoken languages. Another point was that highlighting strings is useful, as
 they tend to be in a different (i.e. natural) language as opposed to the rest
 of the program. I think this is definitely an interesting idea that I would
